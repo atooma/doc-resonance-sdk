@@ -25,3 +25,4 @@ Table of Contents
 
    intro
    core
+	 example
