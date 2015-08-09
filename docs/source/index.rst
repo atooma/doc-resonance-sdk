@@ -15,6 +15,7 @@ This documentation is aimed to provide in depth details on how to approach devel
 
 * :ref:`intro` - Here you can find answers to questions like *what is Resonance?* and *what I can do with Resonance SDK?*. Your understanding of Atooma potential starts from here!
 * :ref:`core` - Interested in Atooma SDK? Great! First step is to go deep into this section for understanding main concepts concerned with Atooma environment and platform.
+* :ref:`example` -
 
 Table of Contents
 ------------------------------
@@ -25,4 +26,4 @@ Table of Contents
 
    intro
    core
-	 example
+   example

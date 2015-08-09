@@ -1,6 +1,6 @@
 .. _example:
 
-Building applications with Resonance SDK
+Building Own Applications
 =================================================
 
 Target of this section is providing some examples, showing in depth how Resonance SDK can be used for simplifying development of specific tasks.
@@ -44,7 +44,7 @@ Manifest configuration
       android:process=":datacollector" />
 
 
-Sample application
+Working with Resonance API Client
 ---------------------------------------
 
 .. code-block:: java
