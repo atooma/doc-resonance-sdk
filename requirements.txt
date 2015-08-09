@@ -1,0 +1,2 @@
+sphinx-bootstrap-theme==0.4.7
+wsgiref==0.1.2
