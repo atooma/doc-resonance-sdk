@@ -21,27 +21,29 @@ Manifest configuration
 
 .. code-block:: xml
 
-  <meta-data android:name="com.atooma.resonance.sdk.ApplicationId" android:value="YOUR_ID" />
+  <meta-data
+    android:name="com.atooma.resonance.sdk.ApplicationId"
+    android:value="YOUR_ID" />
 
   <service
-      android:name="com.atooma.resonance.ResonanceCollectorService"
-      android:exported="false"
-      android:process=":datacollector" />
+    android:name="com.atooma.resonance.ResonanceCollectorService"
+    android:exported="false"
+    android:process=":datacollector" />
 
   <provider
-      android:name="com.atooma.resonance.provider.SnapshotProvider"
-      android:authorities="com.atooma.datacollector.snapshotsYOUR_ID"
-      android:exported="false" />
+    android:name="com.atooma.resonance.provider.SnapshotProvider"
+    android:authorities="com.atooma.datacollector.snapshotsYOUR_ID"
+    android:exported="false" />
 
   <receiver
-      android:name="com.atooma.resonance.sender.DataSenderTimerReceiver"
-      android:exported="false"
-      android:process=":datacollector" />
+    android:name="com.atooma.resonance.sender.DataSenderTimerReceiver"
+    android:exported="false"
+    android:process=":datacollector" />
 
   <service
-      android:name="com.atooma.resonance.sender.DataSenderDemandService"
-      android:exported="false"
-      android:process=":datacollector" />
+    android:name="com.atooma.resonance.sender.DataSenderDemandService"
+    android:exported="false"
+    android:process=":datacollector" />
 
 
 Working with Resonance API Client
