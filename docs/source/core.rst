@@ -36,7 +36,7 @@ Let's suppose in out Android application we would like to listen for all updates
     // building event to monitor
     Event event = Event.Builder.create()
       .all()                     // all updates
-      .doAction(new DoAction() { // action to execute
+      .doAction(new Action() { // action to execute
         @Override
         public void execute() {
             // execute code
@@ -53,7 +53,7 @@ Of course it's possible to exploit *Builder* for defining more complex scenarios
   Event event = Event.Builder.create()
     .from(ActivityItem.ActivityType.CAR)   // transition from Car
     .to(ActivityItem.ActivityType.WALKING) // to Walking
-    .doAction(new DoAction() {             // action to execute
+    .doAction(new Action() {             // action to execute
       @Override
       public void execute() {
           // execute code
