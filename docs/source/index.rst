@@ -14,15 +14,15 @@ Welcome to the official reference for developing with Resonance SDK powered by A
 This documentation is aimed to provide in depth details on how to approach development and it is organised as follows:
 
 * :ref:`intro` - Here you can find answers to questions like *what is Resonance?* and *what I can do with Resonance SDK?*. Your understanding of Atooma potential starts from here!
-* :ref:`core` - Interested in Atooma SDK? Great! First step is to go deep into this section for understanding main concepts concerned with Atooma environment and platform.
-* :ref:`example` -
+* :ref:`core` - Interested in Resonance SDK? Great! First step is to go deep into this section for understanding main concepts concerned with it.
+* :ref:`example` - This is the better place for finding good examples on how Resonance SDK can be used for dramatically simplifying development of killing features within your app!
 
 Table of Contents
 ------------------------------
 
 .. toctree::
    :numbered:
-   :maxdepth: 3
+   :maxdepth: 2
 
    intro
    core

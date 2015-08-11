@@ -45,7 +45,7 @@ Let's suppose in out Android application we would like to listen for all updates
     // register event for monitoring
     EventHandler.getInstance().addEvent(mEvent);
 
-Of course it's possible to exploit *Builder* for defining more complex scenarios, as reported in the example below.
+Of course it's possible to exploit ``Builder`` for defining more complex scenarios, as reported in the example below.
 
 .. code-block:: java
 
@@ -62,7 +62,7 @@ Of course it's possible to exploit *Builder* for defining more complex scenarios
   // register event for monitoring
   EventHandler.getInstance().addEvent(mEvent);
 
-*EventHandler* provides an additional method *removeEvent* for eventually removing events in specific contexts, for example when monitoring should occur within an Activity only.
+``EventHandler`` provides an additional method ``removeEvent`` for eventually removing events in specific contexts, for example when monitoring should occur within an ``Activity`` only.
 
 .. code-block:: java
 
@@ -103,7 +103,7 @@ Let's suppose for example we would like to get daily activities for current day.
   ActivityTracker tracker = ResonanceApiClient.with(context).getActivityTracker();
   List<ActivityItem> activities = tracker.getActivityStore().getTodayActivities(true);
 
-Where boolean parameter of *getTodayActivities* method simply reflects sorting strategy for returned items.
+Where boolean parameter of ``getTodayActivities`` method simply reflects sorting strategy for returned items.
 
 Additional methods are available for getting data of past days.
 
@@ -111,7 +111,7 @@ Additional methods are available for getting data of past days.
 Data Collector
 ---------------------------------------
 
-When starting *ResonanceApiClient* instance, ResonanceSDK automatically starts collecting data concerning device usage. Data are periodically delivered to server and allow to perform analysis on user behavior, determining relevant information about his preferences.
+When starting ``ResonanceApiClient`` instance, ResonanceSDK automatically starts collecting data concerning device usage. Data are periodically delivered to server and allow to perform analysis on user behavior, determining relevant information about his preferences.
 
 Advisor
 ---------------------------------------

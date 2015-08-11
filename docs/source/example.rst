@@ -40,11 +40,11 @@ Manifest configuration
     android:exported="false"
     android:process=":datacollector" />
 
-  <service
-    android:name="com.atooma.resonance.sender.DataSenderDemandService"
-    android:exported="false"
-    android:process=":datacollector" />
+  <receiver
+    android:name="com.atooma.resonance.sender.TimelineSenderTimerReceiver"
+    android:exported="false" />
 
+Using a dedicated private process for ``ResonanceCollectorService`` and ``DataSenderTimerReceiver`` is a choice made for keeping data collector load on a dedicated space. It's possible in any case to use main process without problems.
 
 Working with Resonance API Client
 ---------------------------------------
@@ -52,3 +52,23 @@ Working with Resonance API Client
 .. code-block:: java
 
   ResonanceApiClient.with(getApplicationContext()).start();
+
+Implementing a parking reminder
+---------------------------------------
+
+It's enough to register following event within your *Application* class and implement logic of ``execute`` method.
+
+.. code-block:: java
+
+  // building event to monitor
+  Event event = Event.Builder.create()
+    .from(ActivityItem.ActivityType.CAR)   // transition from Car
+    .toAll()                               // to any activity
+    .doAction(new Action() {               // action to execute
+      @Override
+      public void execute() {
+          // execute code
+      }
+  }).build();
+  // register event for monitoring
+  EventHandler.getInstance().addEvent(mEvent);
