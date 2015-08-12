@@ -11,11 +11,11 @@ Welcome to the official reference for developing with Resonance SDK powered by A
 
 	We appreciate your understanding and patience!
 
-This documentation is aimed to provide in depth details on how to approach development and it is organised as follows:
+This documentation is aimed to provide in depth details on how to approach development and it is organized as follows:
 
-* :ref:`intro` - Here you can find answers to questions like *what is Resonance?* and *what I can do with Resonance SDK?*. Your understanding of Atooma potential starts from here!
-* :ref:`core` - Interested in Resonance SDK? Great! First step is to go deep into this section for understanding main concepts concerned with it.
-* :ref:`example` - This is the better place for finding good examples on how Resonance SDK can be used for dramatically simplifying development of killing features within your app!
+* :ref:`intro` - Here you can find answers to questions like *what is Resonance?* and *what can I do with Resonance SDK?*. Your understanding of Atooma potential starts from here!
+* :ref:`core` - Interested in Resonance? Great! First step is to go deep into this section for understanding main concepts concerned with Resonance SDK.
+* :ref:`example` - Let's move to practice! In this section you can find some Resonance SDK usage examples, showing how it can dramatically simplifying development of killing features within your app!
 
 Table of Contents
 ------------------------------

@@ -38,7 +38,7 @@ Let's suppose in out Android application we would like to listen for all updates
       .all()                     // all updates
       .doAction(new Action() { // action to execute
         @Override
-        public void execute() {
+        public void execute(ActivityItem from, ActivityItem to) {
             // execute code
         }
     }).build();
@@ -55,7 +55,7 @@ Of course it's possible to exploit ``Builder`` for defining more complex scenari
     .to(ActivityItem.ActivityType.WALKING) // to Walking
     .doAction(new Action() {             // action to execute
       @Override
-      public void execute() {
+      public void execute(ActivityItem from, ActivityItem to) {
           // execute code
       }
   }).build();
@@ -100,8 +100,7 @@ Let's suppose for example we would like to get daily activities for current day.
 .. code-block:: java
 
   Context context = getApplicationContext();
-  ActivityTracker tracker = ResonanceApiClient.with(context).getActivityTracker();
-  List<ActivityItem> activities = tracker.getActivityStore().getTodayActivities(true);
+  List<ActivityItem> activities = ActivityStore.with(context).getTodayActivities(true);
 
 Where boolean parameter of ``getTodayActivities`` method simply reflects sorting strategy for returned items.
 
