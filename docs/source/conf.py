@@ -112,13 +112,13 @@ todo_include_todos = False
 #html_theme = 'alabaster'
 html_theme = 'bootstrap'
 html_theme_path = sphinx_bootstrap_theme.get_html_theme_path()
-html_logo = "logo.png"
+#html_logo = "logo.png"
 html_theme_options = {
     # Navigation bar title. (Default: ``project`` value)
     'navbar_title': "",
 
     # Tab name for entire site. (Default: "Site")
-    'navbar_site_name': "ToC",
+    'navbar_site_name': "Contents",
 
     # A list of tuples containing pages or urls to link to.
     # Valid tuples should be in the following forms:
