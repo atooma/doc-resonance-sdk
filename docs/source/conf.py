@@ -112,7 +112,7 @@ todo_include_todos = False
 #html_theme = 'alabaster'
 html_theme = 'bootstrap'
 html_theme_path = sphinx_bootstrap_theme.get_html_theme_path()
-#html_logo = "atooma/logo.png"
+html_logo = "logo.png"
 html_theme_options = {
     # Navigation bar title. (Default: ``project`` value)
     'navbar_title': "",
@@ -199,12 +199,17 @@ html_theme_options = {
 # The name of an image file (within the static path) to use as favicon of the
 # docs.  This file should be a Windows icon file (.ico) being 16x16 or 32x32
 # pixels large.
-#html_favicon = None
+html_favicon = 'favicon.ico'
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
+html_context = {
+    'css_files': [
+        '_static/atooma.css',
+        ],
+    }
 
 # Add any extra paths that contain custom files (such as robots.txt or
 # .htaccess) here, relative to this directory. These files are copied
