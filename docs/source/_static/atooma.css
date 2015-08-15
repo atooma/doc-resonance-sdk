@@ -1,9 +1,9 @@
-/* putting logo behind title *
+/* putting logo behind title */
 div#navbar .navbar-brand>img {
   display: inline !important;
 }
-*/
-/* alert box background color *
+
+/* alert box background color */
 div.container .alert-info {
   background-color: #D9F2FA !important;
   border-color: #A6E9FF !important;
@@ -20,4 +20,3 @@ div.container .alert-warning {
   border-color: #FFC966 !important;
   color: rgb(62, 63, 58) !important;
 }
-*/
