@@ -1,15 +1,23 @@
-/* override table width restrictions */
-/*.wy-table-responsive table td, .wy-table-responsive table th {
-    white-space: normal;
-}
-
-.wy-table-responsive {
-    margin-bottom: 24px;
-    max-width: 100%;
-    overflow: visible;
-}*/
-
-/* putting logo behind title */
+/* putting logo behind title *
 div#navbar .navbar-brand>img {
   display: inline !important;
 }
+*/
+/* alert box background color *
+div.container .alert-info {
+  background-color: #D9F2FA !important;
+  border-color: #A6E9FF !important;
+  color: rgb(62, 63, 58) !important;
+}
+
+div.container .alert a, .alert .alert-link {
+    color: rgb(62, 63, 58) !important;
+    font-weight: bold !important;
+}
+
+div.container .alert-warning {
+  background-color: #FFDA96 !important;
+  border-color: #FFC966 !important;
+  color: rgb(62, 63, 58) !important;
+}
+*/
