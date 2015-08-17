@@ -156,7 +156,7 @@ html_theme_options = {
 
     # HTML navbar class (Default: "navbar") to attach to <div> element.
     # For black navbar, do "navbar navbar-inverse"
-    'navbar_class': "navbar", # navbar-inverse",
+    'navbar_class': "navbar-inverse", # navbar-inverse",
 
     # Fix navigation bar to top of page?
     # Values: "true" (default) or "false"
@@ -164,13 +164,13 @@ html_theme_options = {
 
     # Location of link to source.
     # Options are "nav" (default), "footer" or anything else to exclude.
-    'source_link_position': "nav",
+    'source_link_position': "footer",
 
     # Bootswatch (http://bootswatch.com/) theme.
     #
     # Options are nothing (default) or the name of a valid theme
     # such as "amelia" or "cosmo".
-    'bootswatch_theme': "sandstone",
+    'bootswatch_theme': "spacelab",
 
     # Choose Bootstrap version.
     # Values: "3" (default) or "2" (in quotes)
@@ -223,7 +223,9 @@ html_static_path = ['_static']
 #html_sidebars = {}
 html_sidebars = {
     'index': [],
-    '**': ['atooma_sidebar.html']
+    'intro': [],
+    '**': ['localtoc.html']
+    #'atooma_sidebar.html'
 }
 
 # Additional templates that should be rendered to pages, maps page names to
