@@ -11,6 +11,7 @@ Gradle configuration
 ---------------------------------------
 
 .. code-block:: groovy
+  :linenos:
 
   compile 'com.atooma.activitytracker:activitytracker:1.0.0'
   compile 'com.atooma.resonance:resonance:1.0.0'
@@ -20,6 +21,7 @@ Manifest configuration
 ---------------------------------------
 
 .. code-block:: xml
+  :linenos:
 
   <meta-data
     android:name="com.atooma.resonance.sdk.ApplicationId"
@@ -52,6 +54,7 @@ Working with Resonance API Client
 Usage of Resonance SDK relies on creation of ``ResonanceApiClient`` class. You can easily use it as follows in your ``Application`` class.
 
 .. code-block:: java
+  :linenos:
 
   ResonanceApiClient.with(getApplicationContext()).start();
 
@@ -63,6 +66,7 @@ Implementing a parking reminder
 It's enough to register following event within your *Application* class and implement logic of ``execute`` method.
 
 .. code-block:: java
+  :linenos:
 
   // building event to monitor
   Event event = Event.Builder.create()
