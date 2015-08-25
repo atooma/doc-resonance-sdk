@@ -10,8 +10,13 @@ Resonance SDK comes with an integrated library for simplifying user activity det
 
 Following sections describe more in depth both features, providing detailed examples.
 
+Theoretical Basis
+---------------------------------------
+
+Describe here concepts concerned with activity tracking and normalization.
+
 Monitoring Events
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+---------------------------------------
 
 Activity tracker allows to listen for updates on user activity, with possibility of effectively monitoring specific transitions.
 
@@ -88,7 +93,7 @@ Of course it's possible to exploit ``Builder`` for defining more complex scenari
 There are specific constraints on order of methods for building events to monitor.
 
 Accessing activity history
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+---------------------------------------
 
 Activity tracking library automatically send data concerning user daily activities to Atooma backend for processing, making history and processing outcomes available through an easy to use programming interface.
 
@@ -120,3 +125,14 @@ Interface AdvisedElementsResponseHandler is used by ``ResonanceAdvisor`` for asy
         // do something with activities here
       }
     };
+
+Returned list of ``ActivityItem`` instances is an objects based representation for a timeline, as shown in the following image.
+
+.. figure:: _static/img/activity/timeline.png
+   :width: 250 px
+   :alt: Daily Activities
+
+Next Steps
+---------------------------------------
+
+Describe here all improvements in plan (e.g. abstract filtering and normalization strategies).

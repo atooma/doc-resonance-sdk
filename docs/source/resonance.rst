@@ -5,6 +5,14 @@ Resonance API Client
 
 Target of this section is to provide a high level description of the core concepts behind the Resonance environment. Focus will be on SDK main features and how to exploit them.
 
+Theoretical Basis
+---------------------------------------
+
+Describe here concepts concerned with data analysis with main reference to routines.
+
+*ResonanceApiClient* class
+---------------------------------------
+
 ``ResonanceApiClient`` is a singleton class that should be started together with Android Application.
 
 It follows common logic to be adopted for a Resonance ready application:
@@ -96,3 +104,8 @@ User Routine
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 EXPLAIN CONCEPTS HERE
+
+Next Steps
+---------------------------------------
+
+Describe here all improvements in plan (e.g. routine improvements).
