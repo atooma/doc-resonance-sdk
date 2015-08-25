@@ -53,15 +53,46 @@ Outcome of data analysis performed by Atooma backend is made available through a
 Advised Locations
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Locations by kind
-Confidence
+Basing on data provided by data collector, Resonance SDK is able to provide details on locations that are frequently accessed by user. In particular, ``ResonanceAdvisor`` implements the following three methods:
+
+.. code-block:: java
+  :linenos:
+
+  // Returns a list of locations visited by the current user / device
+  void getRecurrentLocations(AdvisedElementsResponseHandler<AdvisedLocation> listener);
+
+  // Returns a list of locations matching home type, visited by the current user / device
+  void getHomeLocation(AdvisedElementsResponseHandler<AdvisedLocation> listener);
+
+  // Returns a list of locations matching work type, visited by the current user / device
+  void getWorkLocation(AdvisedElementsResponseHandler<AdvisedLocation> listener);
+
+All methods return location asynchronously, through the ``AdvisedElementsResponseHandler`` interface, as shown below:
+
+.. code-block:: java
+  :linenos:
+
+  advisor.getRecurrentLocation(new AdvisedElementsResponseHandler<AdvisedLocation>() {
+    @Override
+    public void onAdvisedElementsRetrievedListener(List<AdvisedLocation> locations) {
+      // work with locations here
+    }
+  });
+
+For all locations some relevant data are reported, allowing user to more easily decide whether to exploit them or not:
+
+* **Confidence** - Probability reflecting reliability of provided information.
+* **Time Spent** -
+* **Hours** -
 
 Points of Interest
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Points of interest by kind
+``ResonanceAdvisor`` can be used at any time for retrieving information on possible points of interest that are available in current device location, according to the specified search criteria reflecting point type.
+
+EXPLAIN CONCEPTS HERE
 
 User Routine
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Points of interest by kind
+EXPLAIN CONCEPTS HERE
