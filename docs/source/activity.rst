@@ -90,16 +90,33 @@ There are specific constraints on order of methods for building events to monito
 Accessing activity history
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Activity tracking library automatically stores data concerning user daily activities, making them available through an easy to use interface.
+Activity tracking library automatically send data concerning user daily activities to Atooma backend for processing, making history and processing outcomes available through an easy to use programming interface.
 
 Let's suppose for example we would like to get daily activities for current day. We can exploit following code:
 
 .. code-block:: java
   :linenos:
 
+  // building java.util.Date to retrieve activities for
+  Date date = ...
+  // building listener for getting list of ActivityItem objects
+  AdvisedElementsResponseHandler<ActivityItem> listener = ...
+  // getting resonance advisor
   Context context = getApplicationContext();
-  List<ActivityItem> activities = ActivityStore.with(context).getTodayActivities(true);
+  ResonanceAdvisor advisor = ResonanceApiClient.with(context).getAdvisor();
+  advisor.getDailyActivities(date, listener);
 
-Where boolean parameter of ``getTodayActivities`` method simply reflects sorting strategy for returned items.
+Please notice that more details on ``ResonanceAdvisor`` class will be provided in section :ref:`resonance-advisor`.
 
-Additional methods are available for getting data of past days.
+Interface AdvisedElementsResponseHandler is used by ``ResonanceAdvisor`` for asynchronously returning lists of objects. It's enough in this sense to implement method ``onAdvisedElementsRetrievedListener``, taking the list of returned elements as input param:
+
+.. code-block:: java
+  :linenos:
+
+  AdvisedElementsResponseHandler<ActivityItem> listener =
+    new AdvisedElementsResponseHandler<>() {
+      @Override
+      public void onAdvisedElementsRetrievedListener(List<ActivityItem> activities) {
+        // do something with activities here
+      }
+    };

@@ -10,7 +10,15 @@ Data Collector
 
 When starting ``ResonanceApiClient`` instance, ResonanceSDK automatically starts collecting data concerning device usage. Data are periodically delivered to server and allow to perform analysis on user behavior, determining relevant information about his preferences.
 
+.. _resonance-advisor:
+
 Advisor
 ---------------------------------------
 
 Data analysis performed on Atooma backend is used in advanced functions provided to clients for getting user information.
+
+.. code-block:: java
+  :linenos:
+
+  Context context = getApplicationContext();
+  ResonanceAdvisor advisor = ResonanceApiClient.with(context).getAdvisor();
