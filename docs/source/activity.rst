@@ -13,9 +13,7 @@ Following sections describe more in depth both features, providing detailed exam
 Theoretical Basis
 ---------------------------------------
 
-Describe here concepts concerned with activity tracking and normalization. [Weiss2012]_
-
-.. [Weiss2012] Weiss, Gary M., and Jeffrey W. Lockhart. "The impact of personalization on smartphone-based activity recognition." AAAI Workshop on Activity Context Representation: Techniques and Languages. 2012.
+The activity recognition task involves mapping time-series sensor data to a single physical user activity [Weiss2012]_. The sensors used to perform this task are: accelerometers and gyroscopes. To achieve this task a number of signal processing algorithm and classification algorithms from the area of Machine Learning are used for example: Naive Bayes, Decision Tree, K-Nearest Neighbor and Support Vector Machine classifiers [Anjum2013]_. 
 
 Monitoring Events
 ---------------------------------------
@@ -138,3 +136,10 @@ Next Steps
 ---------------------------------------
 
 Describe here all improvements in plan (e.g. abstract filtering and normalization strategies).
+
+Bibliography
+---------------------------------------
+
+.. [Weiss2012] Weiss, G. M., and Jeffrey W. L. "The impact of personalization on smartphone-based activity recognition." AAAI Workshop on Activity Context Representation: Techniques and Languages. 2012.
+
+.. [Anjum2013] Anjum, A., and Muhammad, U. I. "Activity recognition using smartphone sensors." Consumer Communications and Networking Conference (CCNC), 2013 IEEE. IEEE, 2013.
