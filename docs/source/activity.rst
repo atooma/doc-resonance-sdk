@@ -13,7 +13,9 @@ Following sections describe more in depth both features, providing detailed exam
 Theoretical Basis
 ---------------------------------------
 
-Describe here concepts concerned with activity tracking and normalization.
+Describe here concepts concerned with activity tracking and normalization. [Weiss2012]_
+
+.. [Weiss2012] Weiss, Gary M., and Jeffrey W. Lockhart. "The impact of personalization on smartphone-based activity recognition." AAAI Workshop on Activity Context Representation: Techniques and Languages. 2012.
 
 Monitoring Events
 ---------------------------------------
