@@ -13,7 +13,7 @@ Following sections describe more in depth both features, providing detailed exam
 Theoretical Basis
 ---------------------------------------
 
-The activity recognition task involves mapping time-series sensor data to a single physical user activity [Weiss2012]_. The sensors used to perform this task are: accelerometers and gyroscopes. To achieve this task a number of signal processing algorithm and classification algorithms from the area of Machine Learning are used for example: Naive Bayes, Decision Tree, K-Nearest Neighbor and Support Vector Machine classifiers [Anjum2013]_. 
+The activity recognition task involves mapping time-series sensor data to a single physical user activity [Weiss2012]_. The sensors used to perform this task are: accelerometers and gyroscopes. To achieve this task a number of signal processing algorithm and classification algorithms from the area of Machine Learning are used for example: Naive Bayes, Decision Tree, K-Nearest Neighbor and Support Vector Machine classifiers [Anjum2013]_.
 
 Monitoring Events
 ---------------------------------------
@@ -34,7 +34,7 @@ Let's suppose in out Android application we would like to listen for all updates
   :linenos:
 
   // building event to monitor
-  Event event = Event.Builder.create()
+  Event event = TransitionEvent.Builder.create()
     .all()                     // all updates
     .doAction(new Action() {   // action to execute
       @Override
@@ -51,7 +51,7 @@ Of course it's possible to exploit ``Builder`` for defining more complex scenari
   :linenos:
 
   // building event to monitor
-  Event event = Event.Builder.create()
+  Event event = TransitionEvent.Builder.create()
     .from(ActivityItem.ActivityType.CAR)   // transition from Car
     .to(ActivityItem.ActivityType.WALKING) // to Walking
     .doAction(new Action() {               // action to execute

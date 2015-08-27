@@ -69,7 +69,7 @@ It's enough to register following event within your *Application* class and impl
   :linenos:
 
   // building event to monitor
-  Event event = Event.Builder.create()
+  Event event = TransitionEvent.Builder.create()
     .from(ActivityItem.ActivityType.CAR)   // transition from Car
     .toAll()                               // to any activity
     .doAction(new Action() {               // action to execute
