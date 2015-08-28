@@ -8,7 +8,15 @@ Target of this section is to provide a high level description of the core concep
 Theoretical Basis
 ---------------------------------------
 
-Describe here concepts concerned with data analysis with main reference to routines.
+Information about the activities listed in section 2 and the snapshot of the device containing geographical data of itself are uploaded on our server for storage and periodical analysis in order to identify:
+
+- recurrent locations. The system can identify the coordinates (position?) of the uesrs' home and job defining as home "the place where the user sleeps" and as work " the major location where everydays activities are done";
+
+- user's routine. The algorithms developed estimate the probabilty that the user is performing a specific activity at a specific time;
+
+- points of interest according to user's locations, as restaurants, cinemas, theaters, museums and so on.
+
+To process all these data we use temporal series analysis strategies as: study and evaluation of chaotic attractor regarding users movements, determination of maximum Lyapunov exponent [Wolf1985]_, [Mukherjee1997]_, [Franchi2014]_ and clustering algorithms as K-means and G-means.
 
 *ResonanceApiClient* class
 ---------------------------------------
@@ -103,9 +111,18 @@ EXPLAIN CONCEPTS HERE
 User Routine
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-EXPLAIN CONCEPTS HERE
+User routine are a series of activities that users perfom during the week. Studing these routine enables us to forecast the timeline of the users activties (i.e. what activity comes next), thus we can develop user - device interaction methods to give them information and suggestions to improve their everyday life.
 
 Next Steps
 ---------------------------------------
 
-Describe here all improvements in plan (e.g. routine improvements).
+A new system that harvest information from other services (Facebook, Twitter, Openstreetmap, Tripadvisor) and wearable devices is currently at study. It will improve the recognition of the activity currently performed and will enable us to develop suggestion and tips for users regarding their activities: have dinner, see a movie, listen to a concert and so on.
+
+Bibliography
+---------------------------------------
+
+.. [Wolf1985] Wolf, A., et al. "Determining Lyapunov exponents from a time series."Physica D: Nonlinear Phenomena 16.3 (1985): 285-317.
+
+.. [Mukherjee1997] Mukherjee, S., and Edgar, O., and Federico G.. "Nonlinear prediction of chaotic time series using support vector machines." Neural Networks for Signal Processing [1997] VII. Proceedings of the 1997 IEEE Workshop. IEEE, 1997.
+
+.. [Franchi2014] Franchi, M., and Leonardo R.. "Statistical properties of the maximum Lyapunov exponent calculated via the divergence rate method." Physical Review E 90.6 (2014): 062920.

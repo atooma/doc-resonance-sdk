@@ -137,7 +137,7 @@ Returned list of ``ActivityItem`` instances is an objects based representation f
 Next Steps
 ---------------------------------------
 
-Describe here all improvements in plan (e.g. abstract filtering and normalization strategies).
+Activity recognition is crucial to be able to recognize and categorize the behaviour of the user and detect habits and hobbies. In the following months the detection system currently implemented will be perfectioned/improved by using not only the data provided by Google's API but also other sources of information like wearable devices and geografic locators. A feedback - and the subsequent machine larning  - system will also be developed to customize and perfection the algorithms for each user.
 
 Bibliography
 ---------------------------------------
