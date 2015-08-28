@@ -17,10 +17,12 @@ The activity recognition task involves mapping time-series sensor data to a sing
 
 Google's API implement those methods in order to identify what type of activity is the user doing in a specific moment, categorizing them as: *IN_VEHICLE*, *ON_BICYCLE*, *ON_FOOT*, *WALKING*, *RUNNING*, *STILL*, *TILTING*, *UNKNOWN*. To improve the results we developed a system using filters and machine leraning; this system allows us to determine very precisely the activities carried on by the user, with confidence factor from *70%* to *100%*. 
 
+.. _activity-tracking-events:
+
 Monitoring Events
 ---------------------------------------
 
-Activity tracker allows to listen for updates on user activity, with possibility of effectively monitoring specific transitions.
+Activity tracker allows to listen for updates on user activity, with possibility of effectively monitoring transitions as well as duration of tasks.
 
 Below is reported the list of possible events that library is currently able to handle.
 
@@ -30,7 +32,10 @@ Below is reported the list of possible events that library is currently able to 
 * Driving
 * Still
 
-Let's suppose in out Android application we would like to listen for all updates and execute specific code when each of them occur. It's enough to register an event as follows.
+Transition Events
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Let's suppose in out Android application we would like to listen for all updates and execute specific code when each of them occur. It's enough to register a ``TransitionEvent`` as follows.
 
 .. code-block:: java
   :linenos:
@@ -65,7 +70,31 @@ Of course it's possible to exploit ``Builder`` for defining more complex scenari
   // register event for monitoring
   EventHandler.getInstance().addEvent(mEvent);
 
-``EventHandler`` provides an additional method ``removeEvent`` for eventually removing events in specific contexts, for example when monitoring should occur within an ``Activity`` only.
+Duration Events
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+``DurationEvent`` objects can be used in all situations where we would like to receive updates on activities that are on progress. Let's suppose for example we would like to be notified when driving car for more than 1 hour. We can proceed as follows:
+
+.. code-block:: java
+  :linenos:
+
+  // building event to monitor
+  Event event = DurationEvent.Builder.create()
+    .of(ActivityItem.ActivityType.CAR)      // activity Car
+    .isMoreThan(TimeUnit.HOURS.toMillis(1)) // for more than 1 hour
+    .doAction(new Action() {                // action to execute
+      @Override
+      public void execute(ActivityItem from, ActivityItem to) {
+          // execute code
+      }
+  }).build();
+  // register event for monitoring
+  EventHandler.getInstance().addEvent(mEvent);
+
+Handling Events
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Looking at code shown in past sections it is obvious that ``EventHandler`` is a singleton class used for registering events to be monitored. It's important to highlight that such class not only provides ``addEvent()`` method, but also ``removeEvent()`` method. This method is used for removing events in specific contexts, for example when monitoring should occur within an ``Activity`` only.
 
 .. code-block:: java
   :linenos:
@@ -92,12 +121,11 @@ Of course it's possible to exploit ``Builder`` for defining more complex scenari
     // ...
   }
 
-There are specific constraints on order of methods for building events to monitor.
 
 Accessing activity history
 ---------------------------------------
 
-Activity tracking library automatically send data concerning user daily activities to Atooma backend for processing, making history and processing outcomes available through an easy to use programming interface.
+Activity tracking library automatically sends data concerning user daily activities to Atooma backend for processing, building history and processing outcomes available through an easy to use programming interface.
 
 Let's suppose for example we would like to get daily activities for current day. We can exploit following code:
 
@@ -137,7 +165,7 @@ Returned list of ``ActivityItem`` instances is an objects based representation f
 Next Steps
 ---------------------------------------
 
-Activity recognition is crucial to be able to recognize and categorize the behaviour of the user and detect habits and hobbies. In the following months the detection system currently implemented will be perfectioned/improved by using not only the data provided by Google's API but also other sources of information like wearable devices and geografic locators. A feedback - and the subsequent machine larning  - system will also be developed to customize and perfection the algorithms for each user.
+Activity recognition is crucial to be able to recognize and categorize the behavior of the user and detect habits and hobbies. In the following months the detection system currently implemented will be perfectioned/improved by using not only the data provided by Google's API but also other sources of information like wearable devices and geographic locators. A feedback, and the subsequent machine learning system, will also be developed to customize and perfection the algorithms for each user.
 
 .. _activity-tracking-bib:
 

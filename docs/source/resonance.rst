@@ -8,13 +8,13 @@ Target of this section is to provide a high level description of the core concep
 Theoretical Basis
 ---------------------------------------
 
-Information about the activities listed in section 2 and the snapshot of the device containing geographical data of itself are uploaded on our server for storage and periodical analysis in order to identify:
+Information about the activities listed in :ref:`activity-tracking-events` and the snapshot of the device containing geographical data of itself are uploaded on our server for storage and periodical analysis in order to identify:
 
-- **Recurrent locations** - The system can identify the coordinates (position?) of the uesrs' home and job defining as home "the place where the user sleeps" and as work " the major location where everydays activities are done";
+- **Recurrent locations** - The system can identify the coordinates of the user's home and job defining as home "the place where the user sleeps" and as work "the major location where every-days activities are done".
 
-- **User's routine** - The algorithms developed estimate the probabilty that the user is performing a specific activity at a specific time;
+- **User's routine** - The algorithms developed estimate the probability that the user is performing a specific activity at a specific time.
 
-- **Points of interest** - According to user's locations, as restaurants, cinemas, theaters, museums and so on.
+- **Points of interest** - Restaurants, cinemas, theaters, museums and so on, according to user's locations.
 
 To process all these data we use temporal series analysis strategies as: study and evaluation of chaotic attractor regarding users movements, determination of maximum Lyapunov exponent :ref:`[ Wolf1985 ] <resonance-bib>`, :ref:`[ Mukherjee1997 ] <resonance-bib>`, :ref:`[ Franchi2014 ] <resonance-bib>` and clustering algorithms as *K-means* and *G-means*.
 
@@ -97,21 +97,44 @@ All methods return location asynchronously, through the ``AdvisedElementsRespons
 
 For all locations some relevant data are reported, allowing user to more easily decide whether to exploit them or not:
 
-* **Confidence** - Probability reflecting reliability of provided information.
 * **Time Spent** -
 * **Hours** -
+
+Moreover, in case of home and work, an additional **confidence** parameter is included, that is the probability reflecting the reliability of provided information.
 
 Points of Interest
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 ``ResonanceAdvisor`` can be used at any time for retrieving information on possible points of interest that are available in current device location, according to the specified search criteria reflecting point type.
 
-EXPLAIN CONCEPTS HERE
+.. code-block:: java
+  :linenos:
+
+  advisor.getRestaurants(new AdvisedElementsResponseHandler<AdvisedRestaurant>() {
+    @Override
+    public void onAdvisedElementsRetrievedListener(List<AdvisedRestaurant> elements) {
+      // execute code
+    }
+  });
 
 User Routine
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-User routine are a series of activities that users perfom during the week. Studing these routine enables us to forecast the timeline of the users activties (i.e. what activity comes next), thus we can develop user - device interaction methods to give them information and suggestions to improve their everyday life.
+User routine are a series of activities that users perfom during the week. Studing these routine enables to forecast the timeline of the users activities (e.g. what activity comes next), thus we can develop user - device interaction methods to give them information and suggestions to improve their everyday life.
+
+Below is reported an example of how to retrieve user routine for a specific day of the week, as a list of ``AdvisedRoutineItem`` instances.
+
+.. code-block:: java
+  :linenos:
+
+  advisor.getRoutine(ResonanceAdvisor.ROUTINE_TYPE_MONDAY,
+        new AdvisedElementsResponseHandler<AdvisedRoutineItem>() {
+      @Override
+      public void onAdvisedElementsRetrievedListener(List<AdvisedRoutineItem> elements) {
+        // execute code
+      }
+  });
+
 
 Next Steps
 ---------------------------------------
