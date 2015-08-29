@@ -21,5 +21,6 @@ setup(
         "sphinx-bootstrap-theme",
         "sphinx-rtd-theme",
         "wsgiref",
+        "sphinxcontrib-email"
     ],
 )
