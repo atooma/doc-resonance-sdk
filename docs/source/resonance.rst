@@ -18,6 +18,8 @@ Information about the activities listed in :ref:`activity-tracking-events` and t
 
 To process all these data we use temporal series analysis strategies as: study and evaluation of chaotic attractor regarding users movements, determination of maximum Lyapunov exponent :ref:`[ Wolf1985 ] <resonance-bib>`, :ref:`[ Mukherjee1997 ] <resonance-bib>`, :ref:`[ Franchi2014 ] <resonance-bib>` and clustering algorithms as *K-means* and *G-means*.
 
+.. _resonance-class:
+
 *ResonanceApiClient* class
 ---------------------------------------
 

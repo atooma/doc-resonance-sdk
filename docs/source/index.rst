@@ -24,7 +24,7 @@ Table of Contents
 
 .. toctree::
 	:numbered:
-	:maxdepth: 2
+	:maxdepth: 3
 
 	intro
 	activity
