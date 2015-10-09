@@ -162,6 +162,98 @@ Returned list of ``ActivityItem`` instances is an objects based representation f
    :width: 250 px
    :alt: Daily Activities
 
+Sub Activities
+---------------------------------------
+
+Resonance SDK comes with a set of functions allowing to go deep into activity recognition statuses described in :ref:`activity-tracking-events`. Relying on data collected from user devices, Resonance is able to provide low level information on user sub-activity, as reported below:
+
+* Walking
+
+* Running
+
+* Biking
+
+* Driving
+
+  * Car
+
+  * Bus
+
+* Still
+
+  * Home
+
+  * Work
+
+  * Cafe
+
+  * Restaurant
+
+  * Cinema
+
+  * Bar
+
+  * Pub
+
+  * Fast Food
+
+  * Theatre
+
+  * Gym
+
+  * Bank
+
+  * University
+
+  * School
+
+  * Kindergarten
+
+  * Library
+
+  * Fuel
+
+  * Charging Station
+
+  * Arts Centre
+
+  * Place of Worship
+
+  * Post Office
+
+  * Sauna
+
+Concept behind sub status is that developer can query Resonance on a specific activity for asking more details. Resonance will provide an answer with a set of sub statuses, each one with a corresponding confidence. It follows a basic example:
+
+.. code-block:: java
+  :linenos:
+
+  // item is an ActivityItem to check
+  ResonanceAdvisor advisor = mResonanceApiClient.getAdvisor();
+  advisor.getSubStatus(item,
+      new AdvisedElementsResponseHandler<AdvisedActivityDetail>(AdvisedActivityDetail.class) {
+        @Override
+        public void onAdvisedElementsRetrievedListener(List<AdvisedActivityDetail> elements) {
+          // write here your code
+        }
+  });
+
+Each ``AdvisedActivityDetail`` element includes ``type`` and ``confidence`` parameters, as reported in the example below:
+
+.. code-block:: json
+  :linenos:
+
+  [
+    {
+      "confidence": 95.870514540028921,
+      "type": "BUS"
+    },
+    {
+      "confidence": 75,
+      "type": "CAR"
+    }
+  ]
+
 Next Steps
 ---------------------------------------
 
