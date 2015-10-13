@@ -21,9 +21,9 @@ As a first step, ``build.gradle`` script in your app module requires to include 
 .. code-block:: groovy
   :linenos:
 
-  compile 'com.atooma.resonance:core:1.0.1'
-  compile 'com.atooma.activitytracker:activitytracker:1.0.1'
-  compile 'com.atooma.resonance:resonance:1.0.1'
+  compile 'com.atooma:core:1.0.1'
+  compile 'com.atooma:activitytracker:1.0.1'
+  compile 'com.atooma:resonance:1.0.1'
 
 Moreover, top level ``build.gradle`` file must include credentials for accessing to Atooma packages:
 
