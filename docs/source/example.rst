@@ -122,3 +122,75 @@ It's enough to register following event within your *Application* class and impl
   }).build();
   // register event for monitoring
   EventHandler.getInstance().addEvent(mEvent);
+
+.. _example-timeline:
+
+Timeline
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This section provides details on an activity tracking application, built using Resonance SDK. Source code is available `here <https://github.com/atooma/android-resonance-sdk-samples>`_ on GitHub. Idea is to create a personal tracker, displaying current user activity as well as activity recorded for past days, using a ``ViewPager`` for organizing data on multiple fragments.
+
+.. figure:: _static/img/activity/timeline.png
+   :width: 250 px
+   :alt: Daily Activities
+
+Most interesting part is of course represented by ``TimelineFragment`` class, that encapsulates the main logic for accessing history and displaying real time information.
+
+Below is reported a simplified implementation for ``loadData()`` method. It basically exploits ``ResonanceAdvisor`` for retrieving and showing data belonging to date provided in input.
+
+.. code-block:: java
+  :linenos:
+
+  private void loadData(Date date) {
+    mResonanceApiClient.getAdvisor().getDailyActivities(date,
+        new AdvisedElementsResponseHandler<ActivityItem>() {
+          @Override
+          public void onAdvisedElementsRetrievedListener(List<ActivityItem> activities) {
+            // updating dataset to show in ListView or RecyclerView
+            mDataset.clear();
+            mDataset.addAll(activities);
+            mAdapter.notifyDataSetChanged();
+          }
+        });
+  }
+
+Of course, in case provided date is current one, it's important to update timeline in real time. That's why ``TimelineFragment`` registers a couple of activity tracking events to be monitored by Resonance, as shown below:
+
+.. code-block:: java
+  :linenos:
+
+  // class instance variables
+  private TransitionEvent mTransitionEvent;
+  private DurationEvent mDurationEvent;
+
+  // ...
+
+  // implementation within onCreate method
+  // mDate is date linked with current fragment
+  mTransition = TransitionEvent.Builder.create()
+      .all()
+      .doAction(new Action() {
+        @Override
+        public void execute(ActivityItem from, ActivityItem to) {
+          loadData(mDate);
+        }
+      }).build();
+
+  mDurationEvent = DurationEvent.Builder.create()
+      .all()
+      .doAction(new Action() {
+        @Override
+        public void execute(ActivityItem from, ActivityItem to) {
+          loadData();
+        }
+      }).build();
+
+  // ...
+
+  // register for updates in onResume, handling
+  // updates only if date is today
+  if (isToday()) {
+    EventHandler.getInstance().addEvent(mTEvent);
+    EventHandler.getInstance().addEvent(mDEvent);
+    // ...
+  }

@@ -162,6 +162,8 @@ Returned list of ``ActivityItem`` instances is an objects based representation f
    :width: 250 px
    :alt: Daily Activities
 
+More details on timeline implementation are reported in section :ref:`example-timeline`.
+
 Sub Activities
 ---------------------------------------
 
