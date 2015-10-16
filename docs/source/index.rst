@@ -17,7 +17,7 @@ This documentation is aimed to provide in depth details on how to approach devel
 * :ref:`activity` - Interested in Resonance? Great! This section provides advanced details on Atooma solutions for dealing with complexity of *Activity Tracking*. Everything starts from here.
 * :ref:`resonance` - This section provides low level details on how to effectively exploit Resonance SDK.
 * :ref:`example` - Let's move to practice! In this section you can find some Resonance SDK usage examples, showing how it can dramatically simplifying development of killing features within your app!
-* :ref:`battery` - Worried about battery usage? Here you can find some guidelines on how to monitor battery consumption of your Resonance based application.
+* :ref:`releases` - Here is reported changelog as well as list of stable packages to use!
 
 Table of Contents
 ------------------------------
@@ -30,4 +30,4 @@ Table of Contents
 	activity
 	resonance
 	example
-	battery
+	releases
