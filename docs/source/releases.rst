@@ -17,7 +17,7 @@ Below is reported current stable Gradle configuration.
   compile 'com.atooma:resonance:1.0.1'
   // engine part
   compile 'com.atooma:engine:1.0.7'
-  compile 'com.atooma:engine-modules:1.0.8'
+  compile 'com.atooma:engine-modules:1.0.9'
 
 Please notice that, using different version combinations for reported libraries may lead to unexpected behaviors.
 

@@ -15,8 +15,8 @@ In order to use Atooma SDK, few steps are required for initializing the environm
 .. code-block:: groovy
   :linenos:
 
-  compile 'com.atooma:engine:1.0.6'
-  compile 'com.atooma:engine-modules:1.0.8'
+  compile 'com.atooma:engine:1.0.7'
+  compile 'com.atooma:engine-modules:1.0.9'
 
 
 Moreover, top level ``build.gradle`` file must include credentials for accessing to Atooma packages:
