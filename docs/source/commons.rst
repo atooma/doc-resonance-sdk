@@ -1,9 +1,11 @@
 .. _commons:
 
-Commons Library
+Appendix 5: Commons Library
 =======================================
 
 Atooma SDK provides on a set of reusable components, packed into a specific Commons Library. An overview of (some of) such components is reported below:
+
+.. cssclass:: table-bordered
 
 +---------------------------------------+------------------------------------------------------------------------------------------+
 | Class                                 | Description                                                                              |

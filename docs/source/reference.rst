@@ -1,6 +1,6 @@
 .. _reference:
 
-API Reference
+Appendix 2: Modules API Reference
 =======================================
 
 This section provide all details concerned with available SDK modules, with specifications for all related components (e.g. :ref:`coretrigger`, :ref:`coreconditionchecker`, :ref:`coreperformer`).
@@ -139,7 +139,7 @@ The OAuth authentication flow via Dropbox is already implemented by a dedicated 
 
 This data can be found in Dropbox Developer page, within the settings of your own application.
 
-Besides the user application's data another necessary information is required, that is the declaration of the Dropbox Authentication Activity within the Manifest. 
+Besides the user application's data another necessary information is required, that is the declaration of the Dropbox Authentication Activity within the Manifest.
 
 .. code-block:: xml
   :linenos:

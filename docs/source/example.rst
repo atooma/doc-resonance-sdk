@@ -1,6 +1,6 @@
 .. _example:
 
-Building Own Applications
+Appendix 4 - Resonance Examples
 =================================================
 
 Target of this section is giving details on steps to follow for creating a Resonance based application from scratch. Some examples will be also provided for showing how Resonance SDK can be used for simplifying development of specific tasks.

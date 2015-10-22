@@ -1,6 +1,6 @@
 .. _examples:
 
-Examples
+Appendix 3 - Engine Examples
 =======================================
 
 Target of this section is providing some examples, showing in depth how Atooma SDK can be used for simplifying development of specific tasks.

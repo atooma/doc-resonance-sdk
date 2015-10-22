@@ -1,6 +1,6 @@
 .. _releases:
 
-Releases
+Appendix 1: Releases
 =======================================
 
 Stable Gradle Configuration

@@ -29,7 +29,7 @@ Atooma bring again the user at the centre of the picture, seamlessly connecting 
 Developers and Companies focused on building IOT devices and/or Apps can rely on a perfect tool to empower their products capabilities and turning them into a real context aware space.
 
 
-What Is Atooma - Why There Is An Atooma App On The Market?
+What Is Resonance - Why There Is An Atooma App On The Market?
 ---------------------------------------------------------------------
 
 Atooma was born initially as an Android (recently also on a light-version for iOS) application aimed to allow end users to create and share automation rules following the *IF and DO* paradigm.
@@ -41,12 +41,12 @@ Today more than 25M of rules have been created and shared among our community an
 Building our own App and product has been a perfect strategy to understand what people love to automate in their life. What they are looking to turn smart into their devices or apps and why they find even hard to use a toolkits like our consumer App.
 
 
-What Is Atooma SDK?
+What Is Resonance SDK?
 -----------------------------------------------------
 
 Such enormous validation convinced our team to extend such contextual capabilities not only to the end user's hands but directly towards device vendors and app developers team.
 Imagine to be able to connect your temperature sensor to our engine and being able to enable contextual experiences on your Smart Home App like: *Every Time the temperature threshold is below a certain level and I'm out of home, activate the air conditioning and store the electrical consumptions info into a Drive Doc*.
-Well, using the Atooma SDK, you can do it in a matter of seconds!
+Well, using the Resonance SDK, you can do it in a matter of seconds!
 
 We estimated every developer can save up to *60%* of coding lines to build context aware use cases by relying on our SDK.
 

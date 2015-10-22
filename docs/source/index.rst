@@ -40,16 +40,16 @@ Table of Contents
 
 .. toctree::
 	:numbered:
-	:maxdepth: 3
+	:maxdepth: 2
 
 	intro
 	core
 	xml
 	programming
-	reference
-	commons
-	examples
 	activity
 	resonance
-	example
 	releases
+	reference
+	examples
+	example
+	commons
