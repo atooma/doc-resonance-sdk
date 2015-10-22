@@ -1,25 +1,22 @@
 .. _examples:
 
-Appendix 3 - Engine Examples
+Building Own Applications
 =======================================
 
-Target of this section is providing some examples, showing in depth how Atooma SDK can be used for simplifying development of specific tasks.
+Target of this section is providing some examples, showing in depth how Resonance SDK can be used for simplifying development of specific tasks.
 
-.. note:: Code for all examples is available `here <https://github.com/atooma/atooma-engine-sdk-samples>`_ on GitHub.
+.. note:: Code for all examples is available on following GitHub repositories:
+
+  * `Rules Engine Examples <https://github.com/atooma/atooma-engine-sdk-samples>`_.
+
+  * `Resonance Examples <https://github.com/atooma/android-resonance-sdk-samples>`_.
 
 Initializing the environment
 ---------------------------------------
 
-In order to use Atooma SDK, few steps are required for initializing the environment within own application. As a first step, ``build.gradle`` script in your ``app`` module requires to include following *dependencies*:
+In order to use Resonance SDK, few steps are required for initializing the environment within own application. As a first step, ``build.gradle`` script in your ``app`` module requires to include *dependencies* reported in section :ref:`releases-stable`:
 
-.. code-block:: groovy
-  :linenos:
-
-  compile 'com.atooma:engine:1.0.7'
-  compile 'com.atooma:engine-modules:1.0.9'
-
-
-Moreover, top level ``build.gradle`` file must include credentials for accessing to Atooma packages:
+Moreover, top level ``build.gradle`` file must include credentials for accessing to Atooma packages. Right now they are stored on two different repositories, one for rule engine related packages and another one for data analysis:
 
 .. code-block:: groovy
   :linenos:
@@ -34,211 +31,51 @@ Moreover, top level ``build.gradle`` file must include credentials for accessing
               password 'YOUR PASSWORD'
             }
         }
+        maven {
+          url  "http://atooma.bintray.com/resonance"
+            credentials {
+              username 'YOUR USERNAME'
+              password 'YOUR PASSWORD'
+            }
+        }
     }
   }
 
 Please notice that you will get credentials by following instructions reported in section :ref:`intro-needs`.
 
-.. _Rule Definition: #ruledefinition
+In order to exploit Data Collector and Resonance related API it's also esential to include following configuration in your Manifest:
 
-.. _ruledefinition:
-
-The *RuleDefinition* Class
----------------------------------------
-
-Rules are represented within the execution engine by using instances belonging to the ``RuleDefinition`` class. Going in depth with details about its implementation is not essential. What is important is to understand is how to get a ``RuleDefinition`` instance starting from its XML representation.
-
-For such purpose, Atooma SDK provides an important utility, the ``XMLDeserializer``, that is a class implementing useful methods for properly deserializing XML files. In particular static method ``deserialize`` allows to get a ``RuleDefinition`` instance, starting from its XML representation, as shown below:
-
-.. code-block:: java
+.. code-block:: xml
   :linenos:
 
-  // getting rule definition with provided id
-  RuleDefinition def_1 = XMLDeserializer.deserialize(stream, id);
+  <meta-data
+    android:name="com.atooma.resonance.sdk.ApplicationId"
+    android:value="YOUR_ID" />
 
-  // getting rule definition with automatically generated id
-  RuleDefinition def_2 = XMLDeserializer.deserialize(stream);
+  <service
+    android:name="com.atooma.resonance.ResonanceCollectorService"
+    android:exported="false"
+    android:process=":datacollector" />
 
-As you can see, two methods are defined for deserializing an XML stream and building the corresponding ``RuleDefinition`` object. Main difference is represented by the possibility of manually defining an identifier for the rule.
+  <provider
+    android:name="com.atooma.resonance.provider.SnapshotProvider"
+    android:authorities="com.atooma.datacollector.snapshotsYOUR_ID"
+    android:exported="false" />
 
-Rule identifiers are extremely important because they are used as keys within rule execution engine. This means that same rule can be loaded twice in case of different identifier, while it is loaded only once in case identifier is the same. Be aware that asking ``XMLDeserializer`` to automatically assign a rule identifier has the effect of generating a UUID value for it. That's why it's commonly preferred to define a custom strategy for assigning identifiers to rules (e.g. using an hash of rule title can be a simple example).
+  <receiver
+    android:name="com.atooma.resonance.sender.DataSenderTimerReceiver"
+    android:exported="false"
+    android:process=":datacollector" />
 
-The *Atooma* Class
----------------------------------------
+  <receiver
+    android:name="com.atooma.resonance.sender.TimelineSenderTimerReceiver"
+    android:exported="false" />
 
-Working with Atooma Rules Engine requires developers to use ``Atooma`` singleton class, that is the main interface for accessing all core Atooma features and functionalities, such as loading and unloading rules.
+Using a dedicated private process for ``ResonanceCollectorService`` and ``DataSenderTimerReceiver`` is a choice made for keeping data collector load into a dedicated space. It's possible in any case to use main process without problems.
 
-It follows a list of the main methods and properties that can be used for properly configuring and exploiting Atooma class:
+Please notice that the ``Application Id`` required in Manifest is provided by Atooma Team together with credentials for accessing repositories.
 
-.. code-block:: java
-  :linenos:
-
-  /**
-   * Initialize the engine, loading all provided modules.
-   */
-  void start(Module[] module)
-
-  /**
-   * Load a rule into the Atooma engine, starting from the corresponding
-   * xml stream. Returns true in case operation is completed successfully,
-   * false otherwise.
-   */
-  boolean loadRule(InputStream stream, RuleConflictsChecker checker)
-
-  /**
-   * Load a rule into the Atooma engine, starting from its Rule Definition.
-   * Returns true in case operation is completed successfully, false otherwise.
-   */
-  void loadRule(RuleDefinition def, RuleConflictsChecker checker)
-
-  /**
-   * Returns a map with all active rule definitions, having rule ids
-   * as keys.
-   */
-  Map<String,RuleDefinition> getActiveRules()
-
-  /**
-   * Unload rule from engine basing on its id and stopping its execution.
-   */
-  boolean unloadRule(RuleDefinition def)
-
-  /**
-   * Returns true if engine is inited, false otherwise.
-   */
-  boolean isEngineInited()
-
-  /**
-   * Stops engine execution.
-   */
-  void halt()
-
-The *RuleConflictsChecker* Class
----------------------------------------
-
-Atooma doesn't impose any constraint on rules creation. It means that users / developers can create even rules with potential inconsistencies. For example, let's consider the rule: **IF** (WiFi ON, WiFi OFF) **DO** (Notification Toast). Of course, such rule will never fire, because it implements two opposing conditions.
-
-In order to handle such kind of situations, Atooma provides an extendible class, that is ``RuleConflictsChecker``. Such class is responsible for checking whether a rule loading may create problems or not. In particular, there are two possible high level conflicts to be taken into account:
-
-1. **Internal Conflicts** - An internal conflict occurs when the definition of a rule prevent it from firing (as in the example described before).
-
-2. **External Conflicts** - An external conflict occurs when the definition of a rule has components that can interfere with other rule definitions.
-
-``RuleConflictsChecker`` class implements following methods for encapsulating the whole conflicts verification logic:
-
-.. code-block:: java
-  :linenos:
-
-    /**
-     * Adds a checker for internal conflicts.
-     */
-    void addInternalChecker(RuleInternalConflictsChecker checker);
-
-    /**
-     * Adds a checker for external conflicts.
-     */
-    void addExternalChecker(RuleExternalConflictsChecker checker);
-
-    /**
-     * Checker for internal conflicts within provided
-     * RuleDefinition. true is returned in case rule
-     * can be activated anyway, false otherwise.
-     */
-    boolean checkInternalConflicts(RuleDefinition def);
-
-    /**
-     * Checker for external conflicts between provided
-     * RuleDefinition and all the other active rules.
-     * true is returned in case rule can be activated
-     * anyway, false otherwise.
-     */
-    boolean checkExternalConflicts(RuleDefinition def);
-
-    /**
-     * Checker for external conflicts between provided
-     * RuleDefinition and the other rules in input.
-     * true is returned in case rule can be activated
-     * anyway, false otherwise.
-     */
-    boolean checkExternalConflicts(RuleDefinition def, Collection<RuleDefinition> defs);
-
-Basing on signatures reported above, it is clear that ``RuleConflictsChecker`` class requires additional checkers to be provided to it in order to implement the overall conflicts verification strategy. Purpose of ``RuleInternalConflictsChecker`` and ``RuleExternalConflictsChecker`` classes is to provide an abstraction for internal and external conflict concepts. Providing new conflict verification criteria means extending such classes, by implementing following methods:
-
-.. code-block:: java
-  :linenos:
-
-  //RuleInternalConflictsChecker
-  abstract boolean hasConflicts(RuleDefinition def);
-
-  // RuleExternalConflictsChecker
-  abstract boolean haveConflicts(RuleDefinition def, RuleDefinition other);
-
-Please notice that all conflict checkers are created by providing a boolean parameter that is used for declaring whether rule must be activated regardless outcome of conflicts verification or not.
-
-Let's suppose we would like to check whether multiple rules share the same trigger. Below is reported sample code for implementation of the corresponding ``RuleExternalConflictsChecker``:
-
-.. code-block:: java
-  :linenos:
-
-  public class SameTriggerConflictsChecker extends RuleExternalConflictsChecker {
-
-    public SameTriggerConflictsChecker(boolean activateAnywayay) {
-      super(activateAnywayay);
-    }
-
-    @Override
-    protected boolean haveConflicts(RuleDefinition def, RuleDefinition other) {
-      TriggerDefinition tr1 = def.getTriggerDefinition();
-      TriggerDefinition tr2 = other.getTriggerDefinition();
-      // In case rule we are going to activate has same trigger
-      // of another active rule, there can be unexpected behaviors
-      return tr1.getModule().equals(tr2.getModule()) && tr1.getId().equals(tr2.getId());
-    }
-
-  }
-
-In terms of usage, below is reported sample code for activating a rule taking care of multiple conflict verification criterias:
-
-.. code-block:: java
-  :linenos:
-
-  RuleConflictsChecker checker = new RuleConflictsChecker();
-  checker.addExternalChecker(new SameTriggerConflictsChecker(true));
-  // ...
-  Atooma.with(context).loadRule(def, checker);
-
-About Opposite Conditions
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Atooma SDK provides implementation for two conflict checkers:
-
-* ``SameTriggerConflictsChecker`` extending ``RuleExternalConflictsChecker``
-
-* ``OppositeConditionsConflictsChecker`` extending ``RuleInternalConflictsChecker``
-
-First one was already discussed in previous section, while second one requires some insights. Starting from version 1.0.7, Atooma engine includes a mechanism for easily declaring component that can be considered as opposite. In practice it's enough to use the following declaration in own modules:
-
-.. code-block:: java
-  :linenos:
-
-  /**
-   * Declares to components as opposite by specifying their ids.
-   */
-  void registerOppositeConditions(String idOne, String idTwo);
-
-By default following rules are already defined for all modules, including the custom ones created by developers:
-
-.. code-block:: java
-  :linenos:
-
-  /**
-   * Such declarations must be used within
-   * registerComponents method for new modules.
-   */
-  registerOppositeConditions("ENABLED", "DISABLED");
-  registerOppositeConditions("CONNECTED", "DISCONNECTED");
-  registerOppositeConditions("ON", "OFF");
-
-Example 0 - Basic Usage
+Example 0 - Rule Engine Basics
 ---------------------------------------
 
 Let's suppose we would like to create a simple rule allowing to show a toast notification when connecting to a specific WiFi network.
@@ -873,4 +710,98 @@ On top of these classes, below is shown the implementation of External Provider 
       return wrapper;
     }
 
+  }
+
+Example 4 - Parking Reminder
+--------------------------------------------
+
+This is a typical example showing potential of Activity Tracking within Resonance SDK. In order to retrieve parking position of user car, it's enough to register following event within *Application* class and implement logic of ``execute`` method.
+
+.. code-block:: java
+  :linenos:
+
+  // building event to monitor
+  Event event = TransitionEvent.Builder.create()
+    .from(ActivityItem.ActivityType.CAR)   // transition from Car
+    .toAll()                               // to any activity
+    .doAction(new Action() {               // action to execute
+      @Override
+      public void execute(ActivityItem from, ActivityItem to) {
+          LocationWrapper location = from.getLocation();
+          // use location data
+      }
+  }).build();
+  // register event for monitoring
+  EventHandler.getInstance().addEvent(mEvent);
+
+.. _example-timeline:
+
+Example 5 - Timeline
+--------------------------------------------
+
+This section provides details on an activity tracking application, built using Resonance SDK. Source code is available `here <https://github.com/atooma/android-resonance-sdk-samples>`_ on GitHub. Idea is to create a personal tracker, displaying current user activity as well as activity recorded for past days, using a ``ViewPager`` for organizing data on multiple fragments.
+
+.. figure:: _static/img/activity/timeline.png
+   :width: 250 px
+   :alt: Daily Activities
+
+Most interesting part is of course represented by ``TimelineFragment`` class, that encapsulates the main logic for accessing history and displaying real time information.
+
+Below is reported a simplified implementation for ``loadData()`` method. It basically exploits ``ResonanceAdvisor`` for retrieving and showing data belonging to date provided in input.
+
+.. code-block:: java
+  :linenos:
+
+  private void loadData(Date date) {
+    mResonanceApiClient.getAdvisor().getDailyActivities(date,
+        new AdvisedElementsResponseHandler<ActivityItem>() {
+          @Override
+          public void onAdvisedElementsRetrievedListener(List<ActivityItem> activities) {
+            // updating dataset to show in ListView or RecyclerView
+            mDataset.clear();
+            mDataset.addAll(activities);
+            mAdapter.notifyDataSetChanged();
+          }
+        });
+  }
+
+Of course, in case provided date is current one, it's important to update timeline in real time. That's why ``TimelineFragment`` registers a couple of activity tracking events to be monitored by Resonance, as shown below:
+
+.. code-block:: java
+  :linenos:
+
+  // class instance variables
+  private TransitionEvent mTransitionEvent;
+  private DurationEvent mDurationEvent;
+
+  // ...
+
+  // implementation within onCreate method
+  // mDate is date linked with current fragment
+  mTransition = TransitionEvent.Builder.create()
+      .all()
+      .doAction(new Action() {
+        @Override
+        public void execute(ActivityItem from, ActivityItem to) {
+          loadData(mDate);
+        }
+      }).build();
+
+  mDurationEvent = DurationEvent.Builder.create()
+      .all()
+      .doAction(new Action() {
+        @Override
+        public void execute(ActivityItem from, ActivityItem to) {
+          loadData();
+        }
+      }).build();
+
+  // ...
+
+  // register for updates in onResume, handling
+  // updates only if date is today
+  if (isToday()) {
+    EventHandler.getInstance().addEvent(mTEvent);
+    EventHandler.getInstance().addEvent(mDEvent);
+    // ...
   }

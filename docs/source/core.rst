@@ -180,11 +180,11 @@ Depending on trigger, different data are collected. Below is reported the overal
 
   * **GPS Accuracy** - Accuracy is the radius of 68% confidence. In other words, if you draw a circle centered at this location's latitude and longitude, and with a radius equal to the accuracy, then there is a 68% probability that the true location is inside the circle.
 
-	* **Provider** - This is the source for GPS Position and Accuracy. Possible values are: network, gps, fused, atooma. More details will be provided in following sections.
+  * **Provider** - This is the source for GPS Position and Accuracy. Possible values are: network, gps, fused, atooma. More details will be provided in following sections.
 
-	* **Speed** - Device Speed.
+  * **Speed** - Device Speed.
 
-	* **Mobile Network Cell** - Cid  and Lac.
+  * **Mobile Network Cell** - Cid  and Lac.
 
 * **Detected Activities** - The list of detected activities with corresponding confidence.
 
@@ -210,7 +210,7 @@ Depending on trigger, different data are collected. Below is reported the overal
 
 * **Light Sensor** - Display Brightness percentage
 
-Below is reported an example of snapshot that is sent to Resonance Backend.
+It follows an example of snapshot that is sent to Resonance Backend:
 
 .. code-block:: json
   :linenos:

@@ -1,6 +1,6 @@
 .. _reference:
 
-Appendix 2: Modules API Reference
+Modules API Reference
 =======================================
 
 This section provide all details concerned with available SDK modules, with specifications for all related components (e.g. :ref:`coretrigger`, :ref:`coreconditionchecker`, :ref:`coreperformer`).
