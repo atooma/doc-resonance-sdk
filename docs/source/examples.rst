@@ -5,48 +5,13 @@ Building Own Applications
 
 Target of this section is providing some examples, showing in depth how Resonance SDK can be used for simplifying development of specific tasks.
 
+All examples reported in next sections require your environment to be configured according to specifications reported in sections :ref:`releases-stable` and :ref:`manifest-stable`.
+
 .. note:: Code for all examples is available on following GitHub repositories:
 
   * `Rules Engine Examples <https://github.com/atooma/atooma-engine-sdk-samples>`_.
 
   * `Resonance Examples <https://github.com/atooma/android-resonance-sdk-samples>`_.
-
-Initializing the environment
----------------------------------------
-
-In order to use Resonance SDK, few steps are required for initializing the environment within own application. As a first step, your gradle configuration must be aligned with the one reported in section :ref:`releases-stable`.
-
-In order to exploit Data Collector and Resonance related API it's also esential to include following configuration in your Manifest:
-
-.. code-block:: xml
-  :linenos:
-
-  <meta-data
-    android:name="com.atooma.resonance.sdk.ApplicationId"
-    android:value="YOUR_ID" />
-
-  <service
-    android:name="com.atooma.resonance.ResonanceCollectorService"
-    android:exported="false"
-    android:process=":datacollector" />
-
-  <provider
-    android:name="com.atooma.resonance.provider.SnapshotProvider"
-    android:authorities="com.atooma.datacollector.snapshotsYOUR_ID"
-    android:exported="false" />
-
-  <receiver
-    android:name="com.atooma.resonance.sender.DataSenderTimerReceiver"
-    android:exported="false"
-    android:process=":datacollector" />
-
-  <receiver
-    android:name="com.atooma.resonance.sender.TimelineSenderTimerReceiver"
-    android:exported="false" />
-
-Using a dedicated private process for ``ResonanceCollectorService`` and ``DataSenderTimerReceiver`` is a choice made for keeping data collector load into a dedicated space. It's possible in any case to use main process without problems.
-
-Please notice that the ``Application Id`` required in Manifest is provided by Atooma Team together with credentials for accessing repositories.
 
 Example 0 - Rule Engine Basics
 ---------------------------------------

@@ -84,6 +84,49 @@ You can get credentials by following instructions reported in section :ref:`intr
     }
   }
 
+.. _manifest-stable:
+
+Basic Manifest Configuration
+---------------------------------------
+
+Below is reported the basic Manifest configuration allowing to use resonance effectively. Additional directives may be needed in case you decide to use specific modules. All related details are reported in section :ref:`reference`.
+
+.. code-block:: xml
+  :linenos:
+
+  <uses-permission android:name="com.atooma.resonance.sdk.permissions.RULE_TRIGGERED" />
+  <uses-permission android:name="com.atooma.resonance.sdk.permissions.ACTIVITY_DETECTION" />
+  <uses-permission android:name="com.atooma.resonance.sdk.permissions.DATA_COLLECTOR_ENTRY_PERSISTED" />
+
+  <!-- ... -->
+
+  <meta-data
+    android:name="com.atooma.resonance.sdk.ApplicationId"
+    android:value="YOUR_ID" />
+
+  <permission
+    android:name="com.atooma.resonance.sdk.permissions.RULE_TRIGGERED"
+    android:protectionLevel="signature" />
+
+  <permission
+    android:name="com.atooma.resonance.sdk.permissions.ACTIVITY_DETECTION"
+    android:protectionLevel="signature" />
+
+  <permission
+    android:name="com.atooma.resonance.sdk.permissions.DATA_COLLECTOR_ENTRY_PERSISTED"
+    android:protectionLevel="signature" />
+
+  <provider
+    android:name="com.atooma.activitytracker.history.ActivitiesProvider"
+    android:authorities="com.atooma.resonance.activitiesYOUR_ID"
+    android:exported="false" />
+
+  <provider
+    android:name="com.atooma.resonance.provider.SnapshotProvider"
+    android:authorities="com.atooma.resonance.snapshotsYOUR_ID"
+    android:exported="false" />
+
+Please notice that the ``Application Id`` required in Manifest is provided by Atooma Team together with credentials for accessing repositories.
 
 Changelog
 ---------------------------------------
