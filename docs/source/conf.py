@@ -47,7 +47,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'Resonance SDK'
+project = u'Resonance Android SDK'
 copyright = u'2015, Atooma Inc'
 author = u'Andrea Petreri'
 

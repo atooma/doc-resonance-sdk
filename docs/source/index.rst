@@ -1,7 +1,7 @@
-Welcome to Resonance SDK's documentation!
-=========================================
+Welcome to Resonance Android SDK's documentation!
+======================================================
 
-Welcome to the official reference for developing with Resonance SDK powered by Atooma.
+Welcome to the official reference for developing with Resonance Android SDK powered by Atooma.
 
 .. note::
 
@@ -25,7 +25,7 @@ This documentation is aimed to provide in depth details on how to approach devel
 	reference
 	activity
 	resonance
-	commons
+	..commons
 	examples
 
 ..
@@ -56,7 +56,7 @@ This documentation is aimed to provide in depth details on how to approach devel
 Stable Gradle Configuration
 ---------------------------------------
 
-Below is reported current stable Gradle configuration for Resonance SDK Android Libraries.
+Below is reported current stable Gradle configuration for Resonance SDK for Android. Please be aware that using different version combinations may lead to unexpected behaviors.
 
 .. code-block:: groovy
   :linenos:
@@ -65,23 +65,45 @@ Below is reported current stable Gradle configuration for Resonance SDK Android 
   compile 'com.atooma:engine-modules:1.0.10'
   compile 'com.atooma:resonance:1.0.1'
 
-Please notice that, using different version combinations for reported libraries may lead to unexpected behaviors.
+In addition to application configuration, top level ``build.gradle`` must also include credentials for accessing Atooma packages.
+You can get credentials by following instructions reported in section :ref:`intro-needs`.
+
+.. code-block:: groovy
+  :linenos:
+
+  allprojects {
+    repositories {
+      jcenter()
+        maven {
+          url  "http://atooma.bintray.com/resonance"
+            credentials {
+              username 'YOUR USERNAME'
+              password 'YOUR PASSWORD'
+            }
+        }
+    }
+  }
+
 
 Changelog
 ---------------------------------------
 
-* **Oct 16, 2015**
+* **Oct 21, 2015**
 
   .. cssclass:: table-bordered
 
   +-----------------------+--------------+--------------------------------------------------------------------+
   | Package               | Version      | Changes                                                            |
   +=======================+==============+====================================================================+
+  | ``engine``            | ``1.0.7``    | \-                                                                 |
+  +-----------------------+--------------+--------------------------------------------------------------------+
   | ``engine-modules``    | ``1.0.10``   | :ref:`module-gdrive` triggers have been added: ``FILEDELETED``,    |
   |                       |              | ``DIRDELETED``, ``SPACEUSED``, ``FILEMODIFIED``.                   |
   |                       |              +--------------------------------------------------------------------+
   |                       |              | :ref:`module-gdrive` performers have been added: ``FILEADD``,      |
   |                       |              | ``FILEDELETE``.                                                    |
+  +-----------------------+--------------+--------------------------------------------------------------------+
+  | ``resonance``         | ``1.0.1``    | \-                                                                 |
   +-----------------------+--------------+--------------------------------------------------------------------+
 
 * **Oct 16, 2015**
@@ -116,6 +138,8 @@ Changelog
   +-----------------------+--------------+--------------------------------------------------------------------+
   | ``engine-modules``    | ``1.0.8``    | :ref:`module-dropbox` first implementation has been added.         |
   +-----------------------+--------------+--------------------------------------------------------------------+
+  | ``resonance``         | ``1.0.0``    | \-                                                                 |
+  +-----------------------+--------------+--------------------------------------------------------------------+
 
 * **Sep 30, 2015**
 
@@ -124,9 +148,13 @@ Changelog
   +-----------------------+--------------+--------------------------------------------------------------------+
   | Package               | Version      | Changes                                                            |
   +=======================+==============+====================================================================+
+  | ``engine``            | ``1.0.5``    | \-                                                                 |
+  +-----------------------+--------------+--------------------------------------------------------------------+
   | ``engine-modules``    | ``1.0.7``    | :ref:`module-instagram` triggers have been added:                  |
   |                       |              | ``NEW-PHOTO-FROM-ME``, ``NEW-PHOTO-FROM-FOLLOWING``,               |
   |                       |              | ``NEW-VIDEO-FROM-ME``, ``NEW-VIDEO-FROM-FOLLOWING``.               |
+  +-----------------------+--------------+--------------------------------------------------------------------+
+  | ``resonance``         | ``1.0.0``    | \-                                                                 |
   +-----------------------+--------------+--------------------------------------------------------------------+
 
 * **Sep 25, 2015**
@@ -136,6 +164,8 @@ Changelog
   +-----------------------+--------------+--------------------------------------------------------------------+
   | Package               | Version      | Changes                                                            |
   +=======================+==============+====================================================================+
+  | ``engine``            | ``1.0.5``    | \-                                                                 |
+  +-----------------------+--------------+--------------------------------------------------------------------+
   | ``engine-modules``    | ``1.0.6``    | Allowed usage of Google channels on devices lacking of             |
   |                       |              | ``Play Services``.                                                 |
   +                       +              +--------------------------------------------------------------------+
@@ -144,4 +174,6 @@ Changelog
   |                       |              | :ref:`module-instagram` first implementation  has been added.      |
   +                       +              +--------------------------------------------------------------------+
   |                       |              | :ref:`module-gcalendar` trigger has been added: ``ON-EVENT``.      |
+  +-----------------------+--------------+--------------------------------------------------------------------+
+  | ``resonance``         | ``1.0.0``    | \-                                                                 |
   +-----------------------+--------------+--------------------------------------------------------------------+

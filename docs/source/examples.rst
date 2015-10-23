@@ -14,34 +14,7 @@ Target of this section is providing some examples, showing in depth how Resonanc
 Initializing the environment
 ---------------------------------------
 
-In order to use Resonance SDK, few steps are required for initializing the environment within own application. As a first step, ``build.gradle`` script in your ``app`` module requires to include *dependencies* reported in section :ref:`releases-stable`:
-
-Moreover, top level ``build.gradle`` file must include credentials for accessing to Atooma packages. Right now they are stored on two different repositories, one for rule engine related packages and another one for data analysis:
-
-.. code-block:: groovy
-  :linenos:
-
-  allprojects {
-    repositories {
-      jcenter()
-        maven {
-          url  "http://atooma.bintray.com/engine"
-            credentials {
-              username 'YOUR USERNAME'
-              password 'YOUR PASSWORD'
-            }
-        }
-        maven {
-          url  "http://atooma.bintray.com/resonance"
-            credentials {
-              username 'YOUR USERNAME'
-              password 'YOUR PASSWORD'
-            }
-        }
-    }
-  }
-
-Please notice that you will get credentials by following instructions reported in section :ref:`intro-needs`.
+In order to use Resonance SDK, few steps are required for initializing the environment within own application. As a first step, your gradle configuration must be aligned with the one reported in section :ref:`releases-stable`.
 
 In order to exploit Data Collector and Resonance related API it's also esential to include following configuration in your Manifest:
 

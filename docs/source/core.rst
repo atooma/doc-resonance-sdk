@@ -139,78 +139,79 @@ Of course depending on component, only some parameter sources can be used:
 Data Analysis
 ------------------------------
 
-On top of rules engine, Resonance SDK comes with a set of API allowing to build a detailed profile of user attitudes, providing to developers suitable functions for retrieving all user-related structured data.
+On top of **Rules Engine**, Resonance SDK comes with a set of API allowing to determine user attitudes and providing to developers suitable functions for retrieving interesting user-related data.
+
+By analyzing data coming from user devices (from smartphones to connected wearables), Resonance SDK is able to answer to questions like:
+
+* Where does user live?
+* Where does user work?
+* Which is user favorite restaurant?
+* Does user most commonly take car or bus?
+* Which rules / smart actions can be more suitable for users?
+
+... and much more.
+
+.. figure:: _static/img/data_analysis.png
+   :width: 650 px
+   :alt: Subsystems for Data Analysis
+   :align: center
+
+Resonance subsystem for Data Analysis is made of three main functional blocks:
+
+* **Data Collector** - Allows to retrieve data from devices and to send them to Backend.
+
+* **Backend** - Receive data from devices, store and analyze them for determining regularities.
+
+* **Advisor** - Provide high level functions for exposing to clients all relevant information determined by Backend.
+
+Next section will provide advanced details about Data Collector, that is the most important functional block for Data Analysis. Magic starts from here!
 
 Data Collector
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Resonance Data Collector is the core components that allows to retrieve data from user devices, sending them anonymously to backend. It basically defines a set of events (triggers) at which a snapshot of device status is captured. Idea behind this approach is to avoid collecting data in case they are not significant, increasing sample rate in presence of more complex activities.
+Resonance Data Collector is a core component having following responsibilities:
+
+* **Retrieving** data from user devices, adopting strategies aimed to reduce the amount of useless information by increasing sample rate in presence of more complex activities, of course with an eye to battery drain.
+* **Pre-processing** data for keeping just significant information.
+* **Packaging** valuable information into a structured format, ready to be delivered to Resonance Backend
+* **Deliverying** data to Resonance Backend, minimizing network load.
+
+..
+	 responsible of retrieving data from user devices, sending them anonymously to backend. It basically defines a set of events (triggers) at which a snapshot of device status is captured. Idea behind this approach is to avoid collecting data in case they are not significant, increasing sample rate in presence of more complex activities, of course with an eye to battery drain.
 
 Below is reported a high level list of monitored events:
 
-* **Activity Recognition** - Snapshot is taken every time an activity starts as well as every time an activity ends. This means that for each activity there is a couple of samples describing its start / end instances.
+.. cssclass:: table-bordered
 
-* **Rule Triggered** - Snapshot is taken every time an Atooma rule is triggered on device.
++-------------------------------------+----------------------------------------------------------------------+
+| **Event Type**                      | **Event Snapshot Description**                                       |
++=====================================+======================================================================+
+| **Activity Recognition**            | Snapshot is taken every time an activity starts as well as every     |
+|                                     | time an activity ends. This means that for each activity there is a  |
+|                                     | couple of samples describing its start / end instances.              |
++-------------------------------------+----------------------------------------------------------------------+
+| **Rule Triggered**                  | Snapshot is taken every time an Atooma rule is triggered on device.  |
++-------------------------------------+----------------------------------------------------------------------+
+| **Headphone In/Out**                | Snapshot is taken every time headphones are plugged in or out from   |
+|                                     | device.                                                              |
++-------------------------------------+----------------------------------------------------------------------+
+| **Airplane Mode On/Off**            | Snapshot is taken every time airplane mode is enabled or disabled.   |
++-------------------------------------+----------------------------------------------------------------------+
+| **WiFi Connect / Disconnect**       | Snapshot is taken every time device connects to or disconnects from  |
+|                                     | a WiFi network.                                                      |
++-------------------------------------+----------------------------------------------------------------------+
+| **Bluetooth On / Off**              | Snapshot is taken every time device bluetooth is turned on or off.   |
++-------------------------------------+----------------------------------------------------------------------+
+| **Bluetooth Connect / Disconnect**  | Snapshot is taken every time device connect to or disconnects from   |
+|                                     | a Bluetooth device.                                                  |
++-------------------------------------+----------------------------------------------------------------------+
+| **Silent Mode On / Off**            | Snapshot is taken every time device silent mode is enabled or        |
+|                                     | disabled.                                                            |
++-------------------------------------+----------------------------------------------------------------------+
+| **Call Started**                    | Snapshot is taken every time a phone call is started.                |
++-------------------------------------+----------------------------------------------------------------------+
 
-* **Headphone In/Out** - Snapshot is taken every time headphones are plugged in or out from device.
-
-* **Airplane Mode On/Off** - Snapshot is taken every time airplane mode is enabled or disabled
-
-* **WiFi Connect / Disconnect** - Snapshot is taken every time device connects to or disconnects from a WiFi network.
-
-* **Bluetooth On / Off** - Snapshot is taken every time device bluetooth is turned on or off.
-
-* **Bluetooth Connect / Disconnect** - Snapshot is taken every time device connect to or disconnects from a Bluetooth device.
-
-* **Silent Mode On / Off** - Snapshot is taken every time device silent mode is enabled or disabled.
-
-* **Call Started** - Snapshot is taken every time a phone call is started.
-
-Depending on trigger, different data are collected. Below is reported the overall set of possible information to be retrieved when a device snapshot is taken:
-
-* **Data Collector Version** - Since snapshots structure may change, it’s essential to include data collector version together with each sample that is delivered to server.
-
-* **Device Id** - The unique id of device. It is computed as SHA-256 of hardware serial number. If not available, IMEI is hashed and in last instance WiFi network card MAC address.
-
-* **Event** - This is the event type, defined according to triggers mentioned in previous section. Possible values are: ``bt_on``, ``bt_off``, ``wifi_connected``, ``wifi_disconnected``, ``silent_mode_on``, ``silent_mode_off``, ``airplane_mode_on``, ``airplane_mode_off``, ``headset_plugged``, ``headset_unplugged``, ``device_boot``, ``activity_start``, ``activity_end``, ``rule_triggered``
-
-* **Location** - This data is structured for including different kinds of information. Not all the snapshots include Location details. In particular, location is included in Activity Start and WiFi Connected events only.
-
-  * **GPS Position** - Latitude  and Longitude.
-
-  * **GPS Accuracy** - Accuracy is the radius of 68% confidence. In other words, if you draw a circle centered at this location's latitude and longitude, and with a radius equal to the accuracy, then there is a 68% probability that the true location is inside the circle.
-
-  * **Provider** - This is the source for GPS Position and Accuracy. Possible values are: network, gps, fused, atooma. More details will be provided in following sections.
-
-  * **Speed** - Device Speed.
-
-  * **Mobile Network Cell** - Cid  and Lac.
-
-* **Detected Activities** - The list of detected activities with corresponding confidence.
-
-* **Wifi Network** - The SSID of the WiFi network that device is connected to. ``not connected`` value is reported in case device is not connected to any WiFi network.
-
-* **Date** - Snapshot registration date in format YYYY/MM/DD (e.g. 2015/06/26)
-
-* **Time** - Snapshot registration time in format HH:MM, with hour from 0 to 23 (e.g. 14:56)
-
-* **Battery** - Structured data with information about battery status. In particular:
-
-  * **Level** - Battery percentage level
-
-  * **Charging** - This field tells whether device is charging or not, including details on charging method. Possible values are: ``ac``, ``usb``, ``wireless`` and ``no``
-
-* **Display On/Off** - Flag telling whether display is turned on or not.
-
-* **Volume Level** - Level of volume
-
-* **Paired Bluetooth Device** - Name of Bluetooth device that is currently paired
-
-* **In Call** - Flag telling whether device is in call or not
-
-* **Light Sensor** - Display Brightness percentage
-
-It follows an example of snapshot that is sent to Resonance Backend:
+Depending on trigger, different data are collected. Below is reported an example of snapshot in json format, together with the detailed description of the overall set of possible information.
 
 .. code-block:: json
   :linenos:
@@ -243,4 +244,44 @@ It follows an example of snapshot that is sent to Resonance Backend:
     "wifi": "not_connected"
   }
 
-Please notice that in order to reduce device load, collected snapshots are sent in blocks to backend.
+* **Data Collector Version** - Since snapshots structure may change, it’s essential to include data collector version together with each sample that is delivered to server.
+
+* **Device Id** - The unique id of device. It is computed as SHA-256 of hardware serial number. If not available, IMEI is hashed and in last instance WiFi network card MAC address.
+
+* **Event** - This is the event type, defined according to triggers mentioned in previous section. Possible values are: ``bt_on``, ``bt_off``, ``wifi_connected``, ``wifi_disconnected``, ``silent_mode_on``, ``silent_mode_off``, ``airplane_mode_on``, ``airplane_mode_off``, ``headset_plugged``, ``headset_unplugged``, ``device_boot``, ``activity_start``, ``activity_end``, ``rule_triggered``
+
+* **Location** - This data is structured for including different kinds of information. Not all the snapshots include Location details. In particular, location is included in Activity Start and WiFi Connected events only.
+
+  * **GPS Position** - Latitude  and Longitude.
+
+  * **GPS Accuracy** - Accuracy is the radius of 68% confidence. In other words, if you draw a circle centered at this location's latitude and longitude, and with a radius equal to the accuracy, then there is a 68% probability that the true location is inside the circle.
+
+  * **Provider** - This is the source for GPS Position and Accuracy. Possible values are: network, gps, fused, atooma. More details will be provided in following sections.
+
+  * **Speed** - Device Speed.
+
+  * **Mobile Network Cell** - Cid  and Lac.
+
+* **Detected Activities** - The list of detected activities (e.g. ``still``, ``vehicle``, ``biking``, ``walking``, ``running``) with corresponding confidence.
+
+* **Wifi Network** - The SSID of the WiFi network that device is connected to. ``not connected`` value is reported in case device is not connected to any WiFi network.
+
+* **Date** - Snapshot registration date in format YYYY/MM/DD (e.g. 2015/06/26)
+
+* **Time** - Snapshot registration time in format HH:MM, with hour from 0 to 23 (e.g. 14:56)
+
+* **Battery** - Structured data with information about battery status. In particular:
+
+  * **Level** - Battery percentage level
+
+  * **Charging** - This field tells whether device is charging or not, including details on charging method. Possible values are: ``ac``, ``usb``, ``wireless`` and ``no``
+
+* **Display On/Off** - Flag telling whether display is turned on or not.
+
+* **Volume Level** - Level of volume
+
+* **Paired Bluetooth Device** - Name of Bluetooth device that is currently paired
+
+* **In Call** - Flag telling whether device is in call or not
+
+* **Light Sensor** - Display Brightness percentage

@@ -15,7 +15,7 @@ Theoretical Basis
 
 The activity recognition task involves mapping time-series sensor data to a single physical user activity :ref:`[ Weiss2012 ] <activity-tracking-bib>`. The sensors used to perform this task are: accelerometers and gyroscopes. To achieve this task a number of signal processing algorithm and classification algorithms from the area of *Machine Learning* are used for example: *Naive Bayes*, *Decision Tree*, *K-Nearest Neighbor* and *Support Vector Machine* classifiers :ref:`[ Anjum2013 ] <activity-tracking-bib>`.
 
-Google's API implement those methods in order to identify what type of activity is the user doing in a specific moment, categorizing them as: *IN_VEHICLE*, *ON_BICYCLE*, *ON_FOOT*, *WALKING*, *RUNNING*, *STILL*, *TILTING*, *UNKNOWN*. To improve the results we developed a system using filters and machine leraning; this system allows us to determine very precisely the activities carried on by the user, with confidence factor from *70%* to *100%*. 
+Google's API implement those methods in order to identify what type of activity is the user doing in a specific moment, categorizing them as: ``IN_VEHICLE``, ``ON_BICYCLE``, ``ON_FOOT``, ``WALKING``, ``RUNNING``, ``STILL``, ``TILTING``, ``UNKNOWN``. To improve the results we developed a system using filters and machine leraning; this system allows us to determine very precisely the activities carried on by the user, with confidence factor from *70%* to *100%*. 
 
 .. _activity-tracking-events:
 

@@ -3,9 +3,9 @@
 Getting Started
 =======================================
 
-This tutorial is intended to get you up and running with the Atooma Android SDK environment. We'll walk through from setup to running your own *Atooma-Powered-App*.
+This tutorial is intended to get you up and running with the Resonance Android SDK environment. We'll walk through from setup to running your own **Resonance-Powered-App**.
 
-*Atooma-Powered-Apps* are Android based applications or devices that allow a user to leverage on the power of connecting multiple devices and apps together, with the final goal to automate recurring tasks and actions.
+**Resonance-Powered-Apps** are Android based applications or devices that allow a user to leverage on the power of connecting multiple devices and apps together, with the final goal to automate recurring tasks and actions.
 
 Furthermore sensors, apps and devices are all managed by Atooma as key enabler to new generations of smart devices designed to:
 

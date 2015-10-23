@@ -5,6 +5,8 @@ Developing Modules
 
 Atooma SDK allows to create new modules and components by exploiting a pre-defined set of *abstract classes*, as reported in table below:
 
+.. cssclass:: table-bordered
+
 +------------------------+-------------------------------------------------+
 | Component              | Classes                                         |
 +========================+=================================================+
