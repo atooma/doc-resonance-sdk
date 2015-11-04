@@ -68,8 +68,11 @@ In practice, *if-do parts* are contained in what is defined as **rule body**.
 In addition to body, all rules include a **header**, declaring all basic rule information:
 
 * A **title** for the rule (max 50 chars).
+
 * An optional **description** of the rule (max 250 chars).
+
 * The list of **modules** (with corresponding min version) that are needed for executing the rule.
+
 * An optional list of **properties** to be used as parameters for the rule, each one including an **identifier**, a **value type** and a **value**.
 
 Following sections provide advanced details on the structure of `Trigger`_, `Condition Checker`_ and `Performer`_ definitions.
@@ -86,7 +89,9 @@ Trigger Definition
 Trigger definition provides the configuration for the rule trigger. It includes three elements:
 
 * The **module** implementing the trigger.
+
 * The **identifier** of the trigger.
+
 * The eventual **list of parameters** required by the trigger.
 
 .. note:: Since rules are activated by triggers it's essential for them to define it.
@@ -99,8 +104,11 @@ Condition Checkers Definition
 Condition checker definition provides the configuration for a condition to be verified within the execution context of the rule after trigger activation. It includes four elements:
 
 * The **module** implementing the condition checker.
+
 * The **identifier** of the condition checker.
+
 * The eventual **list of parameters** required by the condition checker.
+
 * The eventual **inversion of the boolean** result of the condition evaluation (``NOT`` operator).
 
 .. note:: A rule can have up to four condition checkers, to be verified according to their declaration order. As soon as a condition evaluation returns *false*, the rule execution is interrupted. As a result, all subsequent conditions won't be evaluated and performers won't be executed.
@@ -126,14 +134,19 @@ Defining trigger, condition checkers and performers may often require to use par
 There are four possible value sources for parameters:
 
 * **Rule properties** - Properties declared within rule definition can be used as static parameter values.
+
 * **Injection from trigger** - When activating the execution of a rule, a trigger can inject one or more variables into the rule execution context. Of course, such variables can be used by performers only.
+
 * **Injection from performer** - During their execution, performers can inject one or more variables into the rule execution context. A variable coming from a performer can be used only after the execution of the performer that generated it.
+
 * **External providers** - Static functions can be used for dynamically generating values for rule variables.
 
 Of course depending on component, only some parameter sources can be used:
 
 * **Triggers** - Parameters can be rule properties or values coming from external providers. In particular, every time a trigger parameter is read from an external provider with rule already active, the rule itself is reloaded into Atooma engine.
+
 * **Condition Checkers** - Parameters can be rule properties, values coming from external providers or values injected from trigger.
+
 * **Performers** - Parameters can be rule properties, values coming from external providers, values injected from trigger or values injected from other performers previously executed.
 
 Data Analysis
@@ -144,9 +157,13 @@ On top of **Rules Engine**, Resonance SDK comes with a set of API allowing to de
 By analyzing data coming from user devices (from smartphones to connected wearables), Resonance SDK is able to answer to questions like:
 
 * Where does user live?
+
 * Where does user work?
+
 * Which is user favorite restaurant?
+
 * Does user most commonly take car or bus?
+
 * Which rules / smart actions can be more suitable for users?
 
 ... and much more.
@@ -164,124 +181,12 @@ Resonance subsystem for Data Analysis is made of three main functional blocks:
 
 * **Advisor** - Provide high level functions for exposing to clients all relevant information determined by Backend.
 
-Next section will provide advanced details about Data Collector, that is the most important functional block for Data Analysis. Magic starts from here!
-
-Data Collector
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Resonance Data Collector is a core component having following responsibilities:
+Resonance Data Collector is the most important functional block for Data Analysis, having following responsibilities:
 
 * **Retrieving** data from user devices, adopting strategies aimed to reduce the amount of useless information by increasing sample rate in presence of more complex activities, of course with an eye to battery drain.
+
 * **Pre-processing** data for keeping just significant information.
+
 * **Packaging** valuable information into a structured format, ready to be delivered to Resonance Backend
+
 * **Deliverying** data to Resonance Backend, minimizing network load.
-
-..
-	 responsible of retrieving data from user devices, sending them anonymously to backend. It basically defines a set of events (triggers) at which a snapshot of device status is captured. Idea behind this approach is to avoid collecting data in case they are not significant, increasing sample rate in presence of more complex activities, of course with an eye to battery drain.
-
-Below is reported a high level list of monitored events:
-
-.. cssclass:: table-bordered
-
-+-------------------------------------+----------------------------------------------------------------------+
-| **Event Type**                      | **Event Snapshot Description**                                       |
-+=====================================+======================================================================+
-| **Activity Recognition**            | Snapshot is taken every time an activity starts as well as every     |
-|                                     | time an activity ends. This means that for each activity there is a  |
-|                                     | couple of samples describing its start / end instances.              |
-+-------------------------------------+----------------------------------------------------------------------+
-| **Rule Triggered**                  | Snapshot is taken every time an Atooma rule is triggered on device.  |
-+-------------------------------------+----------------------------------------------------------------------+
-| **Headphone In/Out**                | Snapshot is taken every time headphones are plugged in or out from   |
-|                                     | device.                                                              |
-+-------------------------------------+----------------------------------------------------------------------+
-| **Airplane Mode On/Off**            | Snapshot is taken every time airplane mode is enabled or disabled.   |
-+-------------------------------------+----------------------------------------------------------------------+
-| **WiFi Connect / Disconnect**       | Snapshot is taken every time device connects to or disconnects from  |
-|                                     | a WiFi network.                                                      |
-+-------------------------------------+----------------------------------------------------------------------+
-| **Bluetooth On / Off**              | Snapshot is taken every time device bluetooth is turned on or off.   |
-+-------------------------------------+----------------------------------------------------------------------+
-| **Bluetooth Connect / Disconnect**  | Snapshot is taken every time device connect to or disconnects from   |
-|                                     | a Bluetooth device.                                                  |
-+-------------------------------------+----------------------------------------------------------------------+
-| **Silent Mode On / Off**            | Snapshot is taken every time device silent mode is enabled or        |
-|                                     | disabled.                                                            |
-+-------------------------------------+----------------------------------------------------------------------+
-| **Call Started**                    | Snapshot is taken every time a phone call is started.                |
-+-------------------------------------+----------------------------------------------------------------------+
-
-Depending on trigger, different data are collected. Below is reported an example of snapshot in json format, together with the detailed description of the overall set of possible information.
-
-.. code-block:: json
-  :linenos:
-
-  {
-    "activity": {
-      "activities": {
-	      "still": 100
-      },
-      "duration": 0,
-      "start": 1433488539012
-    },
-    "battery": {
-      "charging": "usb",
-      "level": 28
-    },
-    "event": "activity_start",
-    "location": {
-    	"accuracy": 1454.0,
-      "cid": 9735713,
-      "lac": 23060,
-      "lat": 46.0643252,
-      "lon": 11.1247105,
-      "provider": "network",
-      "speed": 0.0
-    },
-    "date": "2015/06/05",
-    "time": "09:15",
-    "timezone" : "0200",
-    "wifi": "not_connected"
-  }
-
-* **Data Collector Version** - Since snapshots structure may change, it’s essential to include data collector version together with each sample that is delivered to server.
-
-* **Device Id** - The unique id of device. It is computed as SHA-256 of hardware serial number. If not available, IMEI is hashed and in last instance WiFi network card MAC address.
-
-* **Event** - This is the event type, defined according to triggers mentioned in previous section. Possible values are: ``bt_on``, ``bt_off``, ``wifi_connected``, ``wifi_disconnected``, ``silent_mode_on``, ``silent_mode_off``, ``airplane_mode_on``, ``airplane_mode_off``, ``headset_plugged``, ``headset_unplugged``, ``device_boot``, ``activity_start``, ``activity_end``, ``rule_triggered``
-
-* **Location** - This data is structured for including different kinds of information. Not all the snapshots include Location details. In particular, location is included in Activity Start and WiFi Connected events only.
-
-  * **GPS Position** - Latitude  and Longitude.
-
-  * **GPS Accuracy** - Accuracy is the radius of 68% confidence. In other words, if you draw a circle centered at this location's latitude and longitude, and with a radius equal to the accuracy, then there is a 68% probability that the true location is inside the circle.
-
-  * **Provider** - This is the source for GPS Position and Accuracy. Possible values are: network, gps, fused, atooma. More details will be provided in following sections.
-
-  * **Speed** - Device Speed.
-
-  * **Mobile Network Cell** - Cid  and Lac.
-
-* **Detected Activities** - The list of detected activities (e.g. ``still``, ``vehicle``, ``biking``, ``walking``, ``running``) with corresponding confidence.
-
-* **Wifi Network** - The SSID of the WiFi network that device is connected to. ``not connected`` value is reported in case device is not connected to any WiFi network.
-
-* **Date** - Snapshot registration date in format YYYY/MM/DD (e.g. 2015/06/26)
-
-* **Time** - Snapshot registration time in format HH:MM, with hour from 0 to 23 (e.g. 14:56)
-
-* **Battery** - Structured data with information about battery status. In particular:
-
-  * **Level** - Battery percentage level
-
-  * **Charging** - This field tells whether device is charging or not, including details on charging method. Possible values are: ``ac``, ``usb``, ``wireless`` and ``no``
-
-* **Display On/Off** - Flag telling whether display is turned on or not.
-
-* **Volume Level** - Level of volume
-
-* **Paired Bluetooth Device** - Name of Bluetooth device that is currently paired
-
-* **In Call** - Flag telling whether device is in call or not
-
-* **Light Sensor** - Display Brightness percentage
