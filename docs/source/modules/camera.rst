@@ -4,7 +4,7 @@ Camera
 --------------------------
 
 * **Identifier** - CAMERA
-* **Description** - Defines functionalisties for controlling device camera.
+* **Description** - Defines functionalities for controlling device camera.
 * **Current Version** - 1
 * **Initialization** - Checks whether camera hardware is present on device or not.
 * **Destroy** - None

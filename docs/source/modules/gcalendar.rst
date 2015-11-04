@@ -7,7 +7,7 @@ Google Calendar
 * **Description** - Implements integration with Google Calendar.
 * **Initialization** - Checks availability of Play Services, if not available checks availability of com.google.oauth.ClientId and com.google.oauth.ClientSecret as meta-data.
 * **Destroy** - None
-* **Dependencies** - :ref:`module-core`
+* **Dependencies** - :ref:`module-core`, :ref:`module-location`
 
 Value Types
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
