@@ -81,7 +81,7 @@ You can get credentials by following instructions reported in section :ref:`intr
           password 'YOUR PASSWORD'
         }
       }
-			maven {
+      maven {
         url  "http://atooma.bintray.com/resonance"
         credentials {
           username 'YOUR USERNAME'
