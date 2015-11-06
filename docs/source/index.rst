@@ -101,9 +101,9 @@ Below is reported the basic Manifest configuration allowing to use resonance eff
 .. code-block:: xml
   :linenos:
 
-  <uses-permission android:name="com.atooma.resonance.sdk.permissions.RULE_TRIGGERED" />
-  <uses-permission android:name="com.atooma.resonance.sdk.permissions.ACTIVITY_DETECTION" />
-  <uses-permission android:name="com.atooma.resonance.sdk.permissions.DATA_COLLECTOR_ENTRY_PERSISTED" />
+  <uses-permission android:name="YOUR_PACKAGE_NAME.permissions.RULE_TRIGGERED" />
+  <uses-permission android:name="YOUR_PACKAGE_NAME.permissions.ACTIVITY_DETECTION" />
+  <uses-permission android:name="YOUR_PACKAGE_NAME.permissions.DATA_COLLECTOR_ENTRY_PERSISTED" />
 
   <!-- ... -->
 
@@ -112,15 +112,15 @@ Below is reported the basic Manifest configuration allowing to use resonance eff
     android:value="YOUR_ID" />
 
   <permission
-    android:name="com.atooma.resonance.sdk.permissions.RULE_TRIGGERED"
+    android:name="YOUR_PACKAGE_NAME.permissions.RULE_TRIGGERED"
     android:protectionLevel="signature" />
 
   <permission
-    android:name="com.atooma.resonance.sdk.permissions.ACTIVITY_DETECTION"
+    android:name="YOUR_PACKAGE_NAME.permissions.ACTIVITY_DETECTION"
     android:protectionLevel="signature" />
 
   <permission
-    android:name="com.atooma.resonance.sdk.permissions.DATA_COLLECTOR_ENTRY_PERSISTED"
+    android:name="YOUR_PACKAGE_NAME.permissions.DATA_COLLECTOR_ENTRY_PERSISTED"
     android:protectionLevel="signature" />
 
   <provider
