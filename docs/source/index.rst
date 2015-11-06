@@ -74,13 +74,20 @@ You can get credentials by following instructions reported in section :ref:`intr
   allprojects {
     repositories {
       jcenter()
-        maven {
-          url  "http://atooma.bintray.com/resonance"
-            credentials {
-              username 'YOUR USERNAME'
-              password 'YOUR PASSWORD'
-            }
+      maven {
+        url  "http://atooma.bintray.com/engine"
+        credentials {
+          username 'YOUR USERNAME'
+          password 'YOUR PASSWORD'
         }
+      }
+			maven {
+        url  "http://atooma.bintray.com/resonance"
+        credentials {
+          username 'YOUR USERNAME'
+          password 'YOUR PASSWORD'
+        }
+      }
     }
   }
 
