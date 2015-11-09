@@ -61,9 +61,11 @@ Below is reported current stable Gradle configuration for Resonance SDK for Andr
 .. code-block:: groovy
   :linenos:
 
-  compile 'com.atooma:engine:1.0.7'
-  compile 'com.atooma:engine-modules:1.0.10'
-  compile 'com.atooma:resonance:1.0.1'
+  compile 'com.atooma:engine:2.0.0'
+  compile 'com.atooma:modules-mobile:2.0.0'
+  compile 'com.atooma:modules-server:2.0.0'
+  compile 'com.atooma:modules-google:2.0.0'
+  compile 'com.atooma:datacollector:2.0.0'
 
 In addition to application configuration, top level ``build.gradle`` must also include credentials for accessing Atooma packages.
 You can get credentials by following instructions reported in section :ref:`intro-needs`.
@@ -74,13 +76,6 @@ You can get credentials by following instructions reported in section :ref:`intr
   allprojects {
     repositories {
       jcenter()
-      maven {
-        url  "http://atooma.bintray.com/engine"
-        credentials {
-          username 'YOUR USERNAME'
-          password 'YOUR PASSWORD'
-        }
-      }
       maven {
         url  "http://atooma.bintray.com/resonance"
         credentials {
@@ -137,6 +132,31 @@ Please notice that the ``Application Id`` required in Manifest is provided by At
 
 Changelog
 ---------------------------------------
+
+* **Nov 10, 2015**
+
+	.. cssclass:: table-bordered
+
+	+-----------------------+--------------+--------------------------------------------------------------------+
+	| Package               | Version      | Changes                                                            |
+	+=======================+==============+====================================================================+
+	| ``engine``            | ``2.0.0``    | Code optimization.                                                 |
+	+-----------------------+--------------+--------------------------------------------------------------------+
+	| ``modules-mobile``    | ``2.0.0``    | Package just includes all modules related to mobile device         |
+	|                       |              | features.                                                          |
+	+-----------------------+--------------+--------------------------------------------------------------------+
+	| ``modules-server``    | ``2.0.0``    | Package just includes modules related to server device except the  |
+	|                       |              | ones related to Google services.                                   |
+	+-----------------------+--------------+--------------------------------------------------------------------+
+	| ``modules-google``    | ``2.0.0``    | Package just includes modules related to google services.          |
+	|                       |              | :ref:`module-gmail` trigger ``INCOMING`` has been improved for     |
+	|                       |              | allowing to receive real time updates instead of relying on        |
+	|                       |              | periodic checks.                                                   |
+	+-----------------------+--------------+--------------------------------------------------------------------+
+	| ``datacollector``     | ``2.0.0``    | Code optimization for resonance package.                           |
+	+-----------------------+--------------+--------------------------------------------------------------------+
+
+Please notice that ``modules-mobile``, ``modules-server`` and ``modules-google`` do not depend on each other. This means developer can use even just one of them in case he's just interested in a subset of integrations.
 
 * **Oct 21, 2015**
 

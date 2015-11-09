@@ -39,7 +39,7 @@ Please notice that some modules require OAuth authentication (e.g. :ref:`module-
 +-------------------------------+------------------------------------------------------------------------------------------------------------------+---------------+---------+-------------------------+
 | :ref:`module-gdrive`          | Implements integration with Google Drive.                                                                        | Yes           | 5       | :ref:`module-core`      |
 +-------------------------------+------------------------------------------------------------------------------------------------------------------+---------------+---------+-------------------------+
-| :ref:`module-gmail`           | Implements integration with Gmail.                                                                               | Yes           | 3       | :ref:`module-core`,     |
+| :ref:`module-gmail`           | Implements integration with Gmail.                                                                               | Yes           | 4       | :ref:`module-core`,     |
 |                               |                                                                                                                  |               |         | :ref:`module-contacts`  |
 +-------------------------------+------------------------------------------------------------------------------------------------------------------+---------------+---------+-------------------------+
 | :ref:`module-headphone`       | Allows to check headphones presence.                                                                             |               | 1       | :ref:`module-core`      |

@@ -19,9 +19,7 @@ Trigger Incoming Email
 +--------------+-------------------+---------------+--------------+-----------------------------------------------------+
 | Description  | Executes when receiving a new email.                                                                   |
 +--------------+-------------------+---------------+--------------+-----------------------------------------------------+
-| Logic        | Periodic check every 10 minutes. Please notice that in case ``MARK-AS-READ`` parameter is ``true``,    |
-|              | mails are marked as read as soon as they are received. It means that in case two rules exploit this    |
-|              | trigger, just one trigger will probably fire.                                                          |
+| Logic        | Based on real time updates from Google. It works even without Play Services (GCM).                     |
 +--------------+-------------------+---------------+--------------+-----------------------------------------------------+
 
 .. cssclass:: table-bordered
@@ -34,9 +32,6 @@ Trigger Incoming Email
 |              | CORE.TEXT-FILTER                | SUBJECT-FILTER | No           | Email subject filter.                |
 +              +---------------------------------+----------------+--------------+--------------------------------------+
 |              | CORE.TEXT-FILTER                | BODY-FILTER    | No           | Email body filter.                   |
-+              +---------------------------------+----------------+--------------+--------------------------------------+
-|              | CORE.BOOLEAN                    | MARK-AS-READ   | No           | If true, incoming email is marked    |
-|              |                                 |                |              | as read on behalf of the user.       |
 +--------------+---------------------------------+----------------+--------------+--------------------------------------+
 | Variables    | CONTACTS.EMAIL-ADDRESS          | SENDER                        | Email sender.                        |
 +              +---------------------------------+----------------+--------------+--------------------------------------+

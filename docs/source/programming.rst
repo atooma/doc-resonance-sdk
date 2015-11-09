@@ -1002,7 +1002,7 @@ When a rule requires a performer to execute a set of actions, the following meth
 .. code-block:: java
   :linenos:
 
-  protected boolean invoke(String ruleId, Map<String, Object> parameters)
+  protected Map<String, Object> invoke(String ruleId, Map<String, Object> parameters)
 
 * ``ruleId`` is the identifier of the rule that asked for condition verification.
 * ``parameters`` is a map with all the parameters that are input for the rule, according to names and types defined in method ``declareParameters()``.
