@@ -65,7 +65,7 @@ Below is reported current stable Gradle configuration for Resonance SDK for Andr
   compile 'com.atooma:modules-mobile:2.0.0'
   compile 'com.atooma:modules-server:2.0.0'
   compile 'com.atooma:modules-google:2.0.0'
-  compile 'com.atooma:datacollector:2.0.0'
+  compile 'com.atooma:resonance:2.0.0'
 
 In addition to application configuration, top level ``build.gradle`` must also include credentials for accessing Atooma packages.
 You can get credentials by following instructions reported in section :ref:`intro-needs`.
@@ -153,7 +153,7 @@ Changelog
 	|                       |              | allowing to receive real time updates instead of relying on        |
 	|                       |              | periodic checks.                                                   |
 	+-----------------------+--------------+--------------------------------------------------------------------+
-	| ``datacollector``     | ``2.0.0``    | Code optimization for resonance package.                           |
+	| ``resonance``         | ``2.0.0``    | Code optimization.                                                 |
 	+-----------------------+--------------+--------------------------------------------------------------------+
 
 Please notice that ``modules-mobile``, ``modules-server`` and ``modules-google`` do not depend on each other. This means developer can use even just one of them in case he's just interested in a subset of integrations.
