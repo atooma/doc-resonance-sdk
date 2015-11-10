@@ -137,24 +137,24 @@ Changelog
 
 	.. cssclass:: table-bordered
 
-	+-----------------------+--------------+--------------------------------------------------------------------+
-	| Package               | Version      | Changes                                                            |
-	+=======================+==============+====================================================================+
-	| ``engine``            | ``2.0.0``    | Code optimization.                                                 |
-	+-----------------------+--------------+--------------------------------------------------------------------+
-	| ``modules-mobile``    | ``2.0.0``    | Package just includes all modules related to mobile device         |
-	|                       |              | features.                                                          |
-	+-----------------------+--------------+--------------------------------------------------------------------+
-	| ``modules-server``    | ``2.0.0``    | Package just includes modules related to server device except the  |
-	|                       |              | ones related to Google services.                                   |
-	+-----------------------+--------------+--------------------------------------------------------------------+
-	| ``modules-google``    | ``2.0.0``    | Package just includes modules related to google services.          |
-	|                       |              | :ref:`module-gmail` trigger ``INCOMING`` has been improved for     |
-	|                       |              | allowing to receive real time updates instead of relying on        |
-	|                       |              | periodic checks.                                                   |
-	+-----------------------+--------------+--------------------------------------------------------------------+
-	| ``resonance``         | ``2.0.0``    | Code optimization.                                                 |
-	+-----------------------+--------------+--------------------------------------------------------------------+
+  +-----------------------+--------------+--------------------------------------------------------------------+
+  | Package               | Version      | Changes                                                            |
+  +=======================+==============+====================================================================+
+  | ``engine``            | ``2.0.0``    | Code optimization.                                                 |
+  +-----------------------+--------------+--------------------------------------------------------------------+
+  | ``modules-mobile``    | ``2.0.0``    | Package just includes all modules related to mobile device         |
+  |                       |              | features.                                                          |
+  +-----------------------+--------------+--------------------------------------------------------------------+
+  | ``modules-server``    | ``2.0.0``    | Package just includes modules related to server device except the  |
+  |                       |              | ones related to Google services.                                   |
+  +-----------------------+--------------+--------------------------------------------------------------------+
+  | ``modules-google``    | ``2.0.0``    | Package just includes modules related to google services.          |
+  |                       |              | :ref:`module-gmail` trigger ``INCOMING`` has been improved for     |
+  |                       |              | allowing to receive real time updates instead of relying on        |
+  |                       |              | periodic checks.                                                   |
+  +-----------------------+--------------+--------------------------------------------------------------------+
+  | ``resonance``         | ``2.0.0``    | Code optimization.                                                 |
+  +-----------------------+--------------+--------------------------------------------------------------------+
 
 Please notice that ``modules-mobile``, ``modules-server`` and ``modules-google`` do not depend on each other. This means developer can use even just one of them in case he's just interested in a subset of integrations.
 
