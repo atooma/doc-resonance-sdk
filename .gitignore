@@ -1,1 +1,5 @@
 build
+*.rst~
+*.egg-info
+dist
+.gitignore~

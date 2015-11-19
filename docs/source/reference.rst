@@ -236,25 +236,10 @@ Authentication via Instagram requires additional meta-data fields in the manifes
     android:value="YOUR_CLIENT_ID"/>
 
   <meta-data
-    android:name="instagram_redirect_uri"
-    android:value="YOUR_REDIRECT_URI"/>
+    android:name="instagram_client_secret"
+    android:value="YOUR_CLIENT_SECRET"/>
 
-This data can be found in Instagram Developer page, within the settings of your own application.
-The redirect URI should be implemented on a dedicated server. The logic of the endpoint of the redirect URI must follow the instructions written `here <https://instagram.com/developer/authentication/>`_ on Instagram Developers Web Site (Server Side Explicit Flow).
-Essentially, your endpoint will receive a 'code' parameter from Instagram. All you have to do is performing a HTTP POST to https://api.instagram.com/oauth/access_token in order to convert the request token to an access token. This POST request must contain the following parameters in the payload: client_id, client_secret, redirect_uri, grant_type, code. The grant_type parameters must be set to 'authorization_code', while the code parameter is the code just received.
-A successful response contains the access_token, id, username, full_name, profile_picture parameters. All you have to do is returning all these parameters in a JSON format as follows:
-
-.. code-block:: json
-
-  { obj:
-    {
-    'token': '<ACCESS_TOKEN>'
-    'username': '<USERNAME>'
-    'name': '<FULL_NAME>'
-    'id': '<ID>'
-    'picture': '<PROFILE_PICTURE>'
-    }
-  }
+This data can be found in Instagram Developer page, within the settings of your own application. Make sure your redirect uri of your own instagram application is set to 'atooma://instagram'.
 
 If all these steps are performed correctly, the user authenticated with your Instagram Application will be able to use the the facilities provided by the SDK.
 
