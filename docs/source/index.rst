@@ -96,9 +96,11 @@ Below is reported the basic Manifest configuration allowing to use resonance eff
 .. code-block:: xml
   :linenos:
 
-  <uses-permission android:name="YOUR_PACKAGE_NAME.permissions.RULE_TRIGGERED" />
-  <uses-permission android:name="YOUR_PACKAGE_NAME.permissions.ACTIVITY_DETECTION" />
-  <uses-permission android:name="YOUR_PACKAGE_NAME.permissions.DATA_COLLECTOR_ENTRY_PERSISTED" />
+  <uses-permission android:name="YOUR_PACKAGE_NAME.permissions.RESONANCE" />
+
+  <permission
+    android:name="YOUR_PACKAGE_NAME.permission.RESONANCE"
+    android:protectionLevel="signature" />
 
   <!-- ... -->
 
@@ -106,21 +108,16 @@ Below is reported the basic Manifest configuration allowing to use resonance eff
     android:name="com.atooma.resonance.sdk.ApplicationId"
     android:value="YOUR_ID" />
 
-  <permission
-    android:name="YOUR_PACKAGE_NAME.permissions.RULE_TRIGGERED"
-    android:protectionLevel="signature" />
-
-  <permission
-    android:name="YOUR_PACKAGE_NAME.permissions.ACTIVITY_DETECTION"
-    android:protectionLevel="signature" />
-
-  <permission
-    android:name="YOUR_PACKAGE_NAME.permissions.DATA_COLLECTOR_ENTRY_PERSISTED"
-    android:protectionLevel="signature" />
+  <!-- ... -->
 
   <provider
     android:name="com.atooma.activitytracker.history.ActivitiesProvider"
     android:authorities="com.atooma.resonance.activitiesYOUR_ID"
+    android:exported="false" />
+
+  <provider
+    android:name="com.atooma.activitytracker.history.LocationsProvider"
+    android:authorities="com.atooma.resonance.locationsYOUR_ID"
     android:exported="false" />
 
   <provider
@@ -132,6 +129,28 @@ Please notice that the ``Application Id`` required in Manifest is provided by At
 
 Changelog
 ---------------------------------------
+
+* **TBD**
+
+  .. cssclass:: table-bordered
+
+	+-----------------------+--------------+--------------------------------------------------------------------+
+  | Package               | Version      | Changes                                                            |
+  +=======================+==============+====================================================================+
+  | ``engine``            | ``2.0.1``    | Bugs squashed here and there.                                      |
+	|                       |              | RULE_TRIGGERED permission replaced by RESONANCE in manifest.       |
+  +-----------------------+--------------+--------------------------------------------------------------------+
+  | ``modules-mobile``    | ``2.0.1``    | Code optimization.                                                 |
+  +-----------------------+--------------+--------------------------------------------------------------------+
+  | ``modules-server``    | ``2.0.1``    | Code optimization.                                                 |
+  +-----------------------+--------------+--------------------------------------------------------------------+
+  | ``modules-google``    | ``2.0.1``    | Code optimization.                                                 |
+  +-----------------------+--------------+--------------------------------------------------------------------+
+  | ``resonance``         | ``2.0.1``    | Improved activity tracking with main focus on path recognition.    |
+	|                       |              | Location provider configuration to be added in manifest.           |
+	|                       |              | ACTIVITY_DETECTION and DATA_COLLECTOR_ENTRY_PERSISTED permissions  |
+	|                       |              | replaced by RESONANCE in manifest.                                 |
+  +-----------------------+--------------+--------------------------------------------------------------------+
 
 * **Nov 10, 2015**
 
