@@ -61,11 +61,11 @@ Below is reported current stable Gradle configuration for Resonance SDK for Andr
 .. code-block:: groovy
   :linenos:
 
-  compile 'com.atooma:engine:2.0.0'
-  compile 'com.atooma:modules-mobile:2.0.0'
-  compile 'com.atooma:modules-server:2.0.0'
-  compile 'com.atooma:modules-google:2.0.0'
-  compile 'com.atooma:resonance:2.0.0'
+  compile 'com.atooma:engine:2.0.1'
+  compile 'com.atooma:modules-mobile:2.0.1'
+  compile 'com.atooma:modules-server:2.0.1'
+  compile 'com.atooma:modules-google:2.0.1'
+  compile 'com.atooma:resonance:2.0.1'
 
 In addition to application configuration, top level ``build.gradle`` must also include credentials for accessing Atooma packages.
 You can get credentials by following instructions reported in section :ref:`intro-needs`.
