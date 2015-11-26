@@ -181,6 +181,12 @@ Resonance SDK comes with a set of functions allowing to go deep into activity re
 
   * Bus
 
+  * Subway
+
+  * Ferry
+
+  * Train
+
 * Still
 
   * Home
