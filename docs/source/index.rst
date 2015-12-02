@@ -138,7 +138,8 @@ Changelog
   | Package               | Version      | Changes                                                            |
   +=======================+==============+====================================================================+
   | ``engine``            | ``2.0.1``    | Bugs squashed here and there.                                      |
-	|                       |              | RULE_TRIGGERED permission replaced by RESONANCE in manifest.       |
+  |                       |              | RULE_TRIGGERED permission replaced by RESONANCE in manifest.       |
+  |                       |              | ``getActiveModules`` method now available in ``Atooma`` class.     |
   +-----------------------+--------------+--------------------------------------------------------------------+
   | ``modules-mobile``    | ``2.0.1``    | Code optimization.                                                 |
   +-----------------------+--------------+--------------------------------------------------------------------+
