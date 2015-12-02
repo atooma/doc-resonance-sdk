@@ -96,7 +96,7 @@ Below is reported the basic Manifest configuration allowing to use resonance eff
 .. code-block:: xml
   :linenos:
 
-  <uses-permission android:name="YOUR_PACKAGE_NAME.permissions.RESONANCE" />
+  <uses-permission android:name="YOUR_PACKAGE_NAME.permission.RESONANCE" />
 
   <permission
     android:name="YOUR_PACKAGE_NAME.permission.RESONANCE"
