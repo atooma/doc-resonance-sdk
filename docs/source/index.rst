@@ -137,9 +137,10 @@ Changelog
 	+-----------------------+--------------+--------------------------------------------------------------------+
   | Package               | Version      | Changes                                                            |
   +=======================+==============+====================================================================+
-  | ``engine``            | ``2.0.1``    | Bugs squashed here and there.                                      |
-  |                       |              | RULE_TRIGGERED permission replaced by RESONANCE in manifest.       |
+  | ``engine``            | ``2.0.1``    | RULE_TRIGGERED permission replaced by RESONANCE in manifest.       |
   |                       |              | ``getActiveModules`` method now available in ``Atooma`` class.     |
+  |                       |              | Updated meta data to be provided for Instagram authentication.     |
+  |                       |              | Bugs squashed here and there.                                      |
   +-----------------------+--------------+--------------------------------------------------------------------+
   | ``modules-mobile``    | ``2.0.1``    | Code optimization.                                                 |
   +-----------------------+--------------+--------------------------------------------------------------------+
