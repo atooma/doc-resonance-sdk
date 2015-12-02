@@ -130,11 +130,11 @@ Please notice that the ``Application Id`` required in Manifest is provided by At
 Changelog
 ---------------------------------------
 
-* **TBD**
+* **Dec 2, 2015**
 
   .. cssclass:: table-bordered
 
-	+-----------------------+--------------+--------------------------------------------------------------------+
+  +-----------------------+--------------+--------------------------------------------------------------------+
   | Package               | Version      | Changes                                                            |
   +=======================+==============+====================================================================+
   | ``engine``            | ``2.0.1``    | RULE_TRIGGERED permission replaced by RESONANCE in manifest.       |
@@ -149,9 +149,9 @@ Changelog
   | ``modules-google``    | ``2.0.1``    | Code optimization.                                                 |
   +-----------------------+--------------+--------------------------------------------------------------------+
   | ``resonance``         | ``2.0.1``    | Improved activity tracking with main focus on path recognition.    |
-	|                       |              | Location provider configuration to be added in manifest.           |
-	|                       |              | ACTIVITY_DETECTION and DATA_COLLECTOR_ENTRY_PERSISTED permissions  |
-	|                       |              | replaced by RESONANCE in manifest.                                 |
+  |                       |              | Location provider configuration to be added in manifest.           |
+  |                       |              | ACTIVITY_DETECTION and DATA_COLLECTOR_ENTRY_PERSISTED permissions  |
+  |                       |              | replaced by RESONANCE in manifest.                                 |
   +-----------------------+--------------+--------------------------------------------------------------------+
 
 * **Nov 10, 2015**
